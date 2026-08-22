@@ -200,7 +200,13 @@ export default async function CaseStudyPage({ params }: PageProps) {
               <h2 className="mt-4 text-h2 text-balance">What changed</h2>
             </div>
 
-            <dl className="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:mt-14">
+            <dl
+              className={cn(
+                "mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line lg:mt-14",
+                // A lone figure fills the row rather than leaving a dead cell.
+                project.numbers.length > 1 && "sm:grid-cols-2",
+              )}
+            >
               {project.numbers.map((metric, index) => (
                 <Reveal
                   key={metric.label}

@@ -6,6 +6,7 @@ import { ArrowRight } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { ProjectCard } from "@/components/work/project-card";
 import { featuredProjects } from "@/content/projects";
+import { cn } from "@/lib/cn";
 
 export function SelectedWork() {
   const [lead, ...rest] = featuredProjects;
@@ -37,7 +38,13 @@ export function SelectedWork() {
           ) : null}
 
           {rest.length > 0 ? (
-            <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+            <div
+              className={cn(
+                "grid gap-6 lg:gap-8",
+                // One follow-up card fills the row instead of stranding a gap.
+                rest.length > 1 && "md:grid-cols-2",
+              )}
+            >
               {rest.map((project, index) => (
                 <Reveal key={project.slug} delay={index * 90} className="h-full">
                   <ProjectCard project={project} className="flex h-full flex-col" />

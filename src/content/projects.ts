@@ -86,93 +86,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "respora",
-    name: "RespOra",
-    category: "SaaS Platform",
-    summary:
-      "An AI-powered research platform that turns scattered data into answers teams can act on.",
-    intro:
-      "Research teams were losing days to manual data wrangling. RespOra pulls fragmented sources into one intelligent workspace, so analysts spend their time on findings instead of spreadsheets.",
-    featured: true,
-    cover: {
-      alt: "RespOra research intelligence dashboard shown on a laptop",
-    },
-    role: "Full-stack engineering, product design, AI integration",
-    services: ["Product design", "Full-stack development", "AI integration"],
-    tech: ["Next.js", "TypeScript", "PostgreSQL", "Python", "Vercel"],
-    challenge: [
-      "Research and analysis work was spread across spreadsheets, documents and disconnected tools. Every question meant re-gathering the same data by hand, and the answer was only as current as the last manual export.",
-      "The teams doing this work are not engineers. Any solution had to hide the complexity of ingesting messy, inconsistent source data behind an interface that felt obvious on first use.",
-    ],
-    solution: [
-      "RespOra unifies data collection, processing and analysis in one place. Sources are ingested and normalised automatically, then surfaced through a dashboard built around the questions people actually ask.",
-      "AI handles the heavy lifting on unstructured material — summarising, extracting and classifying — while keeping a clear trail back to the underlying source, so the output stays trustworthy rather than opaque.",
-      "The interface uses a strict grid and low-contrast elevation so attention stays on the data. Filtering is context-aware: options adapt to the dataset in view instead of presenting every possible control at once.",
-    ],
-    features: [
-      {
-        title: "Unified data view",
-        detail:
-          "A single workspace across previously disconnected sources, with live status on everything in flight.",
-      },
-      {
-        title: "AI-assisted analysis",
-        detail:
-          "Summarisation and extraction over unstructured material, traceable back to the original source.",
-      },
-      {
-        title: "Context-aware filtering",
-        detail:
-          "Filters adapt to the selected dataset, so the controls on screen are always the relevant ones.",
-      },
-      {
-        title: "Automated reporting",
-        detail:
-          "One-click generation of shareable summaries, replacing manual report assembly.",
-      },
-    ],
-    gallery: [
-      {
-        alt: "RespOra unified data dashboard",
-        caption: "Unified data view across active research",
-        span: "wide",
-      },
-      {
-        alt: "RespOra filtering interface",
-        caption: "Context-aware filters",
-        span: "half",
-      },
-      {
-        alt: "RespOra detail drill-down view",
-        caption: "Drill-down into individual records",
-        span: "half",
-      },
-      {
-        alt: "RespOra automated reporting screen",
-        caption: "Automated report generation",
-        span: "wide",
-      },
-    ],
-    impact: [
-      {
-        label: "Less manual aggregation",
-        detail:
-          "Work that previously meant rebuilding spreadsheets by hand now happens on ingest, freeing analysts for actual analysis.",
-      },
-      {
-        label: "One source of truth",
-        detail:
-          "Teams stopped reconciling competing exports and started working from the same live view.",
-      },
-      {
-        label: "Faster to an answer",
-        detail:
-          "Questions that used to require a new data pull are answered directly in the interface.",
-      },
-    ],
-  },
-
-  {
     slug: "deniyis-interior",
     name: "Deniyi's Interiors & More",
     category: "E-Commerce",
@@ -214,6 +127,7 @@ export const projects: Project[] = [
       "Sell the stock online properly: let a customer browse the real catalogue, pay, and track the order — without a conversation having to happen first.",
       "Get found. The brand needed to appear when someone nearby searched for what it sells, rather than relying entirely on word of mouth.",
       "Give the styling work a credible route in. Published prices qualify an enquiry before it arrives, so the higher-value conversations start further along.",
+      "Take the DMs off the owner. Leads arriving from TikTok and Instagram had to be able to buy on their own, instead of every sale costing a back-and-forth conversation.",
       "Run without a developer. The owner had to add products, change prices and check orders herself, or the site would be a recurring cost instead of an asset.",
     ],
     roleDetail: [
@@ -337,9 +251,14 @@ export const projects: Project[] = [
           "Customers arriving from Google search, where the brand previously had no listing at all.",
       },
       {
+        label: "Social leads that convert themselves",
+        detail:
+          "Traffic arriving from TikTok and Instagram now browses, pays and tracks its own orders. The owner is no longer answering a WhatsApp DM to close every individual sale.",
+      },
+      {
         label: "From DMs to a system of record",
         detail:
-          "Selling moved off informal chat threads onto a system that records every order end to end and lets customers track their own.",
+          "Selling moved off informal chat threads onto a system that records every order end to end.",
       },
       {
         label: "A route in for higher-value work",
@@ -355,83 +274,157 @@ export const projects: Project[] = [
   },
 
   {
-    slug: "toyosi-insurance",
-    name: "Toyosi Insurance",
-    category: "FinTech MVP",
+    slug: "cutiez-couture",
+    name: "Cutiez Couture",
+    category: "Fashion E-Commerce",
+    client: "Cutiez Couture",
+    liveUrl: "https://www.cutiezcouture.com.ng",
     summary:
-      "An insurance MVP that took policy management and claims from paperwork to a product customers can use on their phone.",
+      "A custom unisex fashion brand selling from Instagram and TikTok — given a landing page that converts social traffic and a shop that takes the order without a DM.",
     intro:
-      "Insurance runs on processes that were never designed for a screen. This MVP took the core of that — policies and claims — and made it something a customer can complete without a phone call.",
+      "Cutiez Couture had an audience on Instagram and TikTok and no way to serve it except by hand. Every order arrived as a WhatsApp message the team had to answer, size and price individually. Now a landing page catches the social traffic and hands it to a storefront that sizes, quotes and takes the order on its own.",
     featured: true,
     cover: {
-      alt: "Toyosi Insurance policy management interface on a mobile device",
+      src: "/work/cutiez-landing.webp",
+      alt: "Cutiez Couture landing page with the headline Redefining Decency in Fashion",
     },
-    role: "Product design and full-stack MVP development",
-    services: ["MVP development", "Product design", "Workflow design"],
-    tech: ["React Native", "Next.js", "TypeScript", "Node.js", "PostgreSQL"],
+    role: "Design and front-end development across both properties",
+    services: [
+      "Landing page design",
+      "E-commerce build",
+      "Conversion funnel",
+      "Deployment",
+    ],
+    tech: ["React", "Vite", "TypeScript", "Tailwind CSS", "Vercel"],
     challenge: [
-      "Policy administration and claims were manual, document-heavy and slow. Every step depended on someone being available, and customers had no way to see where their claim stood.",
-      "As an MVP, the build had to prove the model worked without attempting to digitise the entire business at once. Choosing what to leave out mattered as much as what went in.",
+      "The brand's demand was already there — Instagram and TikTok were producing leads steadily. Converting them was the bottleneck. Every single order ran through a WhatsApp conversation: what sizes exist, what it costs, what is in stock, how to pay.",
+      "That does not scale, and it caps the business at the number of messages one person can answer in a day. Interest arriving overnight or during a shoot simply waited.",
+      "Custom sizing made it harder still. Cutiez sells made-to-fit unisex pieces, so \"what size are you?\" is a real conversation rather than a dropdown — which is exactly why it had stayed a manual process.",
+    ],
+    goal: [
+      "Give social traffic somewhere to land that sells the brand, rather than dropping a shop link into a bio and hoping.",
+      "Let a customer choose a size, see a price and place an order without anyone answering a message.",
+      "Keep custom sizing available, since it is the brand's differentiator, without forcing every order back into a DM.",
+      "Be findable outside social — the brand had no presence in search at all.",
+    ],
+    roleDetail: [
+      "Designed and built both properties: the marketing landing page at the brand's own domain, and the storefront it feeds.",
+      "The split is deliberate. The landing page exists to convert social traffic — story, proof, best sellers, a single obvious call to action. The shop exists to take the order. Keeping them separate means the pitch can change as fast as the brand's campaigns do, without touching the store.",
+      "Also handled deployment for both, and set up the Google Business Profile that gives the brand a presence in search alongside the social channels.",
     ],
     solution: [
-      "We scoped to the two workflows that carried the most friction — managing a policy and filing a claim — and built those properly rather than building everything shallowly.",
-      "Customers get a mobile-first experience covering policy details, documents and claim submission, with clear status at every stage so the common 'where is my claim' call disappears.",
-      "Behind it, an operations view lets the team process submissions in one place, with the structure ready to extend as more of the business moves onto the platform.",
+      "The landing page opens on the brand's positioning — custom unisex fashion, \"Redefining Decency in Fashion\" — then runs the story, the four things that make the label different, and a row of best sellers with prices. Every route through it ends at the same place: shop your style.",
+      "The storefront carries the full catalogue with featured pieces, quick view, search, customer accounts and an order history, so a returning customer picks up where they left off.",
+      "Product pages solve the sizing conversation directly: standard sizes from XS to XXL, a size guide, and a \"Need custom size?\" route for the made-to-measure work. The common case self-serves and only genuine custom orders start a conversation.",
+      "Payment currently completes by bank transfer, which is how the brand's customers already pay. The store captures the order and its details; a gateway integration is the natural next step rather than a blocker to launching.",
     ],
     features: [
       {
-        title: "Policy management",
+        title: "Conversion-first landing page",
         detail:
-          "Coverage, documents and renewal detail available to the customer without a phone call.",
+          "Brand story, differentiators and best sellers, all funnelling to one call to action for social traffic.",
       },
       {
-        title: "Digital claims submission",
+        title: "Full catalogue storefront",
         detail:
-          "Guided claim filing with document upload, replacing the paper-and-email round trip.",
+          "Featured pieces, quick view, search and a complete product listing in the brand's black, white and red.",
       },
       {
-        title: "Transparent claim status",
+        title: "Sizes without the DM",
         detail:
-          "Customers can see exactly where a claim is, which removes the most common support request.",
+          "XS to XXL with a size guide on every product page, so the routine question answers itself.",
       },
       {
-        title: "Operations dashboard",
+        title: "Custom sizing kept",
         detail:
-          "A single queue for the team to review, progress and resolve submissions.",
+          "A dedicated route for made-to-measure orders — the brand's differentiator survives the automation.",
+      },
+      {
+        title: "Accounts and order history",
+        detail:
+          "Customers can sign in and see their own orders instead of asking for a status update.",
+      },
+      {
+        title: "Found beyond social",
+        detail:
+          "A Google Business Profile giving the brand a search presence it did not previously have.",
+      },
+    ],
+    numbers: [
+      {
+        value: "~70",
+        label: "Visits a month from Google Business Profile",
+        note: "Monthly average, from a brand that previously existed only on social.",
       },
     ],
     gallery: [
       {
-        alt: "Toyosi Insurance mobile policy screen",
-        caption: "Policy overview on mobile",
-        span: "half",
-      },
-      {
-        alt: "Toyosi Insurance claims submission flow",
-        caption: "Guided claims submission",
-        span: "half",
-      },
-      {
-        alt: "Toyosi Insurance operations dashboard",
-        caption: "Operations queue",
+        src: "/work/cutiez-landing.webp",
+        alt: "Cutiez Couture landing page hero",
+        caption: "Landing page — built to convert Instagram and TikTok traffic",
         span: "wide",
+      },
+      {
+        src: "/work/cutiez-shop.webp",
+        alt: "Cutiez Couture storefront showing the full product listing",
+        caption: "Storefront catalogue",
+        span: "wide",
+      },
+      {
+        src: "/work/cutiez-product.webp",
+        alt: "Cutiez Couture product page with size selection and add to bag",
+        caption: "Product page — sizes, size guide and a custom-size route",
+        span: "wide",
+      },
+    ],
+    technicalBuild: [
+      {
+        title: "Two properties, one funnel",
+        detail:
+          "A marketing site and a storefront deployed separately. Campaign copy and the shop can change independently, and a broken deploy on one cannot take down the other.",
+      },
+      {
+        title: "Sizing modelled as a decision",
+        detail:
+          "Standard sizes handle the majority of orders in the interface; custom measurements branch out to a separate flow. The manual work now only happens where it genuinely adds value.",
+      },
+      {
+        title: "Payment by transfer, deliberately",
+        detail:
+          "The brand's customers already pay by bank transfer, so the store captures the order and the transfer confirms it. Shipping without a gateway got the funnel working months earlier; adding one later changes checkout, not the catalogue.",
+      },
+      {
+        title: "Client-rendered storefront",
+        detail:
+          "A single-page React build keeps browsing, filtering and the bag instant once loaded, which suits a catalogue customers scroll through repeatedly.",
+      },
+      {
+        title: "Search presence without a blog",
+        detail:
+          "For a brand whose discovery happens on social, a Google Business Profile does more per hour invested than content marketing would.",
       },
     ],
     impact: [
       {
-        label: "A working product, not a deck",
+        metric: "~70",
+        label: "Monthly visits from Google search",
         detail:
-          "The MVP put a real, usable service in front of customers to validate the model.",
+          "A discovery channel the brand did not have before, running alongside Instagram and TikTok rather than depending on them.",
       },
       {
-        label: "Fewer status enquiries",
+        label: "Orders without a conversation",
         detail:
-          "Visible claim status addresses the support request the team fielded most often.",
+          "Social leads pick a size, see the price and place the order themselves. The team answers messages about genuinely custom work, not about what a tracksuit costs.",
       },
       {
-        label: "Room to grow",
+        label: "Open outside working hours",
         detail:
-          "Scoped deliberately, with the architecture ready for the next set of workflows.",
+          "Interest arriving overnight or mid-shoot now converts instead of queueing behind whoever is free to reply.",
+      },
+      {
+        label: "A funnel that can be tuned",
+        detail:
+          "With the pitch separated from the shop, the landing page can be rewritten for a campaign without anyone touching the catalogue.",
       },
     ],
   },
