@@ -6,7 +6,6 @@ import { ArrowRight, Button, ButtonLink } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
 import { site } from "@/content/site";
 import {
-  budgetRanges,
   inquiryMailto,
   projectTypes,
   timelines,
@@ -59,7 +58,6 @@ const emptyForm: Inquiry & { website: string } = {
   email: "",
   company: "",
   projectType: "",
-  budget: "",
   timeline: "",
   message: "",
   website: "",
@@ -222,33 +220,6 @@ export function InquiryForm() {
             id={`${formId}-projectType-error`}
             message={errors.projectType}
           />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor={`${formId}-budget`} optional>
-            Budget range
-          </Label>
-          <select
-            {...field("budget")}
-            className={cn(
-              fieldBase,
-              inputHeight,
-              "border-line-strong",
-              "appearance-none bg-[length:18px] bg-[right_1rem_center] bg-no-repeat pr-11",
-              !values.budget && "text-muted-soft",
-            )}
-            style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")",
-            }}
-          >
-            <option value="">Select range</option>
-            {budgetRanges.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
         </div>
 
         <div className="flex flex-col gap-2">

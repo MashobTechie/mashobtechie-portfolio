@@ -7,15 +7,6 @@ export const projectTypes = [
   "Not sure yet — let's talk",
 ] as const;
 
-export const budgetRanges = [
-  "Under ₦250,000",
-  "₦250,000 – ₦500,000",
-  "₦500,000 – ₦1,000,000",
-  "₦1,000,000 – ₦2,500,000",
-  "₦2,500,000+",
-  "Not sure yet",
-] as const;
-
 export const timelines = [
   "As soon as possible",
   "1 – 2 months",
@@ -29,7 +20,6 @@ export type Inquiry = {
   email: string;
   company?: string;
   projectType: string;
-  budget: string;
   timeline: string;
   message: string;
 };
@@ -74,7 +64,6 @@ export function formatInquiry(inquiry: Inquiry) {
     `Email:     ${inquiry.email}`,
     `Business:  ${inquiry.company || "—"}`,
     `Building:  ${inquiry.projectType}`,
-    `Budget:    ${inquiry.budget}`,
     `Timeline:  ${inquiry.timeline}`,
     "",
     inquiry.message,

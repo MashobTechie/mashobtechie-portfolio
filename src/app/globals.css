@@ -64,6 +64,7 @@
   --radius-card: 12px;
   --radius-btn: 8px;
   --radius-media: 14px;
+  --radius-stack: 28px;
 
   /* Very subtle elevation only */
   --shadow-card: 0 1px 2px rgb(11 31 58 / 0.04), 0 1px 3px rgb(11 31 58 / 0.03);
@@ -135,22 +136,55 @@
 
 /* ---------------------------------------------------------------------------
    Stacked scroll
-   Sections pin and the next scrolls up over them. The `top` offset is set per
-   panel from JS (see components/layout/section-stack.tsx) because a panel
-   taller than the viewport needs a negative offset to scroll through fully
-   before pinning. Panels are opaque so the one underneath cannot show through;
-   sections that set their own background paint over the panel's.
+   Sections pin and the next scrolls up over them. `top` and `--stack-progress`
+   are both set per panel from JS (components/layout/section-stack.tsx): the
+   offset because a panel taller than the viewport needs a negative one to
+   scroll through before pinning, the progress because it depends on where the
+   *next* panel has got to.
+
+   The receding panel scales from its top edge, so the incoming panel's curve
+   sits over a card that is visibly stepping back — which is what reads as
+   depth rather than a plain overlap.
 --------------------------------------------------------------------------- */
 .section-stack[data-stacked="true"] > .section-stack-panel {
   position: sticky;
+  overflow: hidden;
+  border-start-start-radius: var(--radius-stack);
+  border-start-end-radius: var(--radius-stack);
   background-color: var(--color-canvas);
-  /* Soft lift so the leading edge of each panel reads as an overlap. */
-  box-shadow: 0 -20px 40px -28px rgb(11 31 58 / 0.18);
+  /* Hairline plus lift, so the stacked edges above read as separate cards. */
+  box-shadow:
+    0 -1px 0 rgb(11 31 58 / 0.08),
+    0 -22px 44px -24px rgb(11 31 58 / 0.28);
+  transform-origin: 50% 0;
+  transform: scale(calc(1 - 0.045 * var(--stack-progress, 0)));
+  will-change: transform;
+}
+
+.section-stack-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-color: var(--color-ink);
+  opacity: calc(0.16 * var(--stack-progress, 0));
+}
+
+/* Nothing to recede into on a narrow screen — the curve alone carries it. */
+@media (max-width: 640px) {
+  .section-stack[data-stacked="true"] > .section-stack-panel {
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .section-stack > .section-stack-panel {
     position: static;
+    transform: none;
     box-shadow: none;
+    border-radius: 0;
+  }
+
+  .section-stack-scrim {
+    display: none;
   }
 }
