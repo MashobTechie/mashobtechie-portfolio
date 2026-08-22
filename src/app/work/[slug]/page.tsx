@@ -29,7 +29,7 @@ export async function generateMetadata({
   if (!project) return { title: "Case study not found" };
 
   return {
-    title: `${project.name} — ${project.category}`,
+    title: `${project.name}: ${project.category}`,
     description: project.summary,
     openGraph: { title: project.name, description: project.summary },
   };
@@ -113,7 +113,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <Reveal>
-              <Eyebrow>01 — The Problem</Eyebrow>
+              <Eyebrow>01 · The Problem</Eyebrow>
               <h2 className="mt-4 text-h2">What was broken</h2>
               <div className="mt-6 flex flex-col gap-4 text-[1.0625rem] leading-relaxed text-muted text-pretty">
                 {project.challenge.map((paragraph) => (
@@ -124,7 +124,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
             {project.goal ? (
               <Reveal delay={100}>
-                <Eyebrow>02 — The Goal</Eyebrow>
+                <Eyebrow>02 · The Goal</Eyebrow>
                 <h2 className="mt-4 text-h2">What the business needed</h2>
                 <div className="mt-6 flex flex-col gap-4 text-[1.0625rem] leading-relaxed text-muted text-pretty">
                   {project.goal.map((paragraph) => (
@@ -143,7 +143,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
           <Container>
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-5">
-                <Eyebrow>03 — My Role</Eyebrow>
+                <Eyebrow>03 · My Role</Eyebrow>
                 <h2 className="mt-4 text-h2 text-balance">
                   What I actually did
                 </h2>
@@ -162,7 +162,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
       <Section>
         <Container>
           <div className="max-w-3xl">
-            <Eyebrow>04 — The Solution</Eyebrow>
+            <Eyebrow>04 · The Solution</Eyebrow>
             <h2 className="mt-4 text-h2 text-balance">What I built</h2>
             <div className="mt-6 flex flex-col gap-4 text-[1.0625rem] leading-relaxed text-muted text-pretty">
               {project.solution.map((paragraph) => (
@@ -198,7 +198,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         <Section className="border-y border-line bg-surface">
           <Container>
             <div className="max-w-2xl">
-              <Eyebrow>05 — The Numbers</Eyebrow>
+              <Eyebrow>05 · The Numbers</Eyebrow>
               <h2 className="mt-4 text-h2 text-balance">What changed</h2>
             </div>
 
@@ -238,7 +238,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
       {project.gallery.length > 0 ? (
         <Section>
           <Container>
-            <Eyebrow>06 — The Product</Eyebrow>
+            <Eyebrow>06 · The Product</Eyebrow>
             <h2 className="mt-4 max-w-2xl text-h2 text-balance">
               A look at what shipped
             </h2>
@@ -252,7 +252,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
       <Section className="border-y border-line bg-surface">
         <Container>
           <div className="max-w-2xl">
-            <Eyebrow>07 — The Technical Build</Eyebrow>
+            <Eyebrow>07 · The Technical Build</Eyebrow>
             <h2 className="mt-4 text-h2 text-balance">
               How it works underneath
             </h2>
@@ -298,7 +298,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         <Container>
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow>08 — The Outcome</Eyebrow>
+              <Eyebrow>08 · The Outcome</Eyebrow>
               <h2 className="mt-4 text-h2 text-balance">
                 What the business got
               </h2>
@@ -334,7 +334,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
           <Container>
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-5">
-                <Eyebrow>09 — Lessons</Eyebrow>
+                <Eyebrow>09 · Lessons</Eyebrow>
                 <h2 className="mt-4 text-h2 text-balance">What I took away</h2>
               </div>
               <div className="flex flex-col gap-4 text-[1.0625rem] leading-relaxed text-muted text-pretty lg:col-span-7">

@@ -2,7 +2,7 @@
 
 import { Children, useEffect, useRef } from "react";
 
-/** Vertical offset between pinned panels — the visible edge of each layer. */
+/** Vertical offset between pinned panels: the visible edge of each layer. */
 const LAYER_STEP = 12;
 
 /**
@@ -21,18 +21,18 @@ const DWELL_RATIO = 0.5;
  * next scrolls up over it, the covered panel receding as it goes.
  *
  * The hard part is content taller than the pinned frame. Bottom-aligning those
- * panels — the obvious fix — puts their top edge off-screen, so they can never
+ * panels, which is the obvious fix, puts their top edge off-screen, so they can never
  * show a deck edge, and the deck breaks at exactly the panels that matter most.
  *
  * So no panel is ever bottom-aligned. Every panel pins at its deck position,
  * and a panel whose content overflows the frame translates that content upward
  * at exactly page-scroll speed while pinned. The content therefore moves the
- * way it would if nothing were pinned — same direction, same rate, no hijack —
+ * way it would if nothing were pinned: same direction, same rate, no hijack,
  * while the frame's edge and curve stay put in the deck.
  *
  * Each panel then claims a little more scroll than its content needs, so that
- * once the content has finished scrubbing the panel holds — pinned, complete
- * and uncovered — before the next one starts over it. See DWELL_RATIO.
+ * once the content has finished scrubbing the panel holds pinned, complete
+ * and uncovered, before the next one starts over it. See DWELL_RATIO.
  *
  * Under prefers-reduced-motion none of this runs. Nothing here is load-bearing:
  * with JavaScript off the panels are plain blocks in document order.
@@ -95,7 +95,7 @@ export function SectionStack({ children }: { children: React.ReactNode }) {
         const contentHeight = contents[index].offsetHeight;
 
         // The last panel does not pin. Nothing in the stack covers it, and
-        // pinning it would leave the footer to scroll over it — the footer is
+        // pinning it would leave the footer to scroll over it. The footer is
         // the end of the page, not another card in the deck. Left in normal
         // flow it still slides over the panels behind it, and the footer then
         // simply follows it down.
@@ -113,7 +113,7 @@ export function SectionStack({ children }: { children: React.ReactNode }) {
 
         // Panels claim their frame plus a dwell beyond whatever their content
         // needs. The dwell is the stretch of scroll where the panel sits
-        // pinned, fully scrubbed and not yet covered — without it the foot of
+        // pinned, fully scrubbed and not yet covered. Without it the foot of
         // a long section is revealed and hidden in the same instant. The last
         // panel needs neither, so it keeps its natural height.
         const height = isLast

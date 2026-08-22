@@ -3,7 +3,7 @@ export const processSteps = [
     number: "01",
     title: "Understand",
     detail:
-      "Understand the business, the users and the goals — before a single screen gets designed. Most bad software is the result of skipping this.",
+      "Understand the business, the users and the goals before a single screen gets designed. Most bad software is the result of skipping this.",
   },
   {
     number: "02",
@@ -21,6 +21,6 @@ export const processSteps = [
     number: "04",
     title: "Launch",
     detail:
-      "Deploy, test and hand over a production-ready product — with the access and documentation to actually own it.",
+      "Deploy, test and hand over a production-ready product, with the access and documentation to own it outright.",
   },
 ] as const;

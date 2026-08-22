@@ -15,7 +15,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   // The sheet stores the route it was opened on, so navigating anywhere
-  // closes it by derivation — no effect syncing state to the pathname.
+  // closes it by derivation, with no effect syncing state to the pathname.
   const [openedOn, setOpenedOn] = useState<string | null>(null);
   const open = openedOn === pathname;
   const setOpen = (next: boolean) => setOpenedOn(next ? pathname : null);
@@ -110,7 +110,7 @@ export function Navbar() {
         </nav>
       </Container>
 
-      {/* Mobile sheet — full-width, large touch targets, not a squeezed desktop nav */}
+      {/* Mobile sheet: full-width, large touch targets, not a squeezed desktop nav */}
       <div
         id="mobile-menu"
         hidden={!open}

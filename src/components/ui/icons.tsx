@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 
-/** Minimal 24px line icons — no dependency, no oversized 3D illustration. */
+/** Minimal 24px line icons. No dependency, no oversized 3D illustration. */
 
 type IconProps = { className?: string };
 

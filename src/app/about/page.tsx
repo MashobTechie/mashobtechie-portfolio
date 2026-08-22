@@ -14,14 +14,14 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Software engineer and SaaS builder focused on turning business ideas into useful digital products — full-stack development, e-commerce, payments, dashboards and AI-powered products.",
+    "Software engineer and SaaS builder focused on turning business ideas into useful digital products, covering full-stack development, e-commerce, payments, dashboards and AI-powered products.",
 };
 
 const experience = [
   {
     title: "Full-stack web development",
     detail:
-      "Front to back on the same product — interface, data model, APIs and deployment.",
+      "Front to back on the same product: interface, data model, APIs and deployment.",
   },
   {
     title: "SaaS products",
@@ -64,7 +64,7 @@ const principles = [
   {
     title: "Leave you in control",
     detail:
-      "You should be able to run your own product — manage content, see your data, understand your costs — without calling me for routine changes.",
+      "You should be able to run your own product, managing content, seeing your data and understanding your costs, without calling me for routine changes.",
   },
 ];
 
@@ -82,7 +82,7 @@ export default function AboutPage() {
 
               <div className="mt-7 flex flex-col gap-4 text-lead text-muted text-pretty">
                 <p>
-                  I&apos;m {site.name} — a software engineer and SaaS builder.
+                  I&apos;m {site.name}, a software engineer and SaaS builder.
                   My work usually starts with someone who has an idea, a
                   business, or a problem that has outgrown spreadsheets and
                   group chats, and needs it to become something real.

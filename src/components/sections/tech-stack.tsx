@@ -11,7 +11,7 @@ export function TechStack({ className }: { className?: string }) {
         <SectionHeading
           eyebrow="Technology"
           title="Modern tools, chosen for the job."
-          lead="The stack matters less than what it lets your business do — but here's what I reach for."
+          lead="The stack matters less than what it lets your business do, but here's what I reach for."
         />
 
         <div className="mt-12 grid gap-10 border-t border-line pt-10 sm:grid-cols-3 lg:mt-14">

@@ -1,6 +1,6 @@
 type ClassValue = string | number | null | undefined | false | ClassValue[];
 
-/** Minimal class joiner — no runtime dependency needed for this surface area. */
+/** Minimal class joiner. No runtime dependency needed for this surface area. */
 export function cn(...values: ClassValue[]): string {
   const out: string[] = [];
 

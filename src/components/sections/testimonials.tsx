@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
 /**
  * Renders the testimonial grid when real quotes exist in `content/testimonials`,
  * and a considered empty state until then. No placeholder quotes, no invented
- * names — an honest empty state reads better than fiction a client can spot.
+ * names. An honest empty state reads better than fiction a client can spot.
  */
 export function Testimonials({ className }: { className?: string }) {
   const hasTestimonials = testimonials.length > 0;
@@ -88,7 +88,7 @@ export function Testimonials({ className }: { className?: string }) {
               </p>
 
               <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted text-pretty">
-                Client feedback goes here as projects wrap up — real words from
+                Client feedback goes here as projects wrap up. Real words from
                 real people, not stock praise. In the meantime, the case studies
                 are the honest version of what it&apos;s like to work with me.
               </p>

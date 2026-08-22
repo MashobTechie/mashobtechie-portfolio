@@ -2,7 +2,7 @@ export type Service = {
   slug: string;
   title: string;
   summary: string;
-  /** Concrete deliverables — what the client actually receives. */
+  /** Concrete deliverables: what the client receives. */
   includes: string[];
   icon: "globe" | "cart" | "layers" | "grid" | "wrench";
 };
@@ -12,7 +12,7 @@ export const services: Service[] = [
     slug: "business-websites",
     title: "Business Websites",
     summary:
-      "Modern websites designed to turn visitors into customers — fast, findable, and built to convert rather than just to look good.",
+      "Modern websites designed to turn visitors into customers. Fast, findable, and built to convert rather than just to look good.",
     includes: [
       "Conversion-focused design",
       "Content management you control",
@@ -38,7 +38,7 @@ export const services: Service[] = [
     slug: "saas-mvps",
     title: "SaaS & MVPs",
     summary:
-      "Turn an idea into a functional product customers can actually use — scoped so you learn something real, quickly.",
+      "Turn an idea into a functional product customers can use, scoped so you learn something real, quickly.",
     includes: [
       "Scope definition and product shaping",
       "Core workflows built properly",
@@ -64,7 +64,7 @@ export const services: Service[] = [
     slug: "product-improvements",
     title: "Product Improvements",
     summary:
-      "Fix, redesign, optimize and improve the website or application you already have — without starting over.",
+      "Fix, redesign, optimize and improve the website or application you already have, without starting over.",
     includes: [
       "Performance and reliability work",
       "Interface and conversion redesign",

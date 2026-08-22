@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/container";
 
 /**
- * Qualitative proof only — no invented statistics. Each point is a statement
+ * Qualitative proof only, with no invented statistics. Each point is a statement
  * about the kind of work delivered, not a number.
  */
 const proofPoints = [

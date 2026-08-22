@@ -39,7 +39,7 @@ export default function ContactPage() {
 
             <p className="mt-5 max-w-md text-lead text-muted text-pretty">
               Every good project starts with a conversation. Tell me what
-              you&apos;re trying to launch, improve or grow — and I&apos;ll tell
+              you&apos;re trying to launch, improve or grow, and I&apos;ll tell
               you honestly whether I&apos;m the right person for it.
             </p>
 

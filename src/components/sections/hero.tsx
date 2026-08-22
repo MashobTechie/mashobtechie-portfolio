@@ -8,7 +8,7 @@ const credibility = ["Websites", "SaaS", "E-commerce", "Web Apps"];
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      {/* Very soft accent wash behind the portrait side — no gradient theatre */}
+      {/* Very soft accent wash behind the portrait side, no gradient theatre */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute right-0 top-0 hidden h-[560px] w-1/2 bg-linear-to-bl from-accent-soft to-transparent opacity-70 lg:block"
@@ -23,7 +23,7 @@ export function Hero() {
 
             <p className="mt-7 max-w-xl text-lead text-muted text-pretty">
               Helping businesses launch, grow &amp; sell online with modern
-              websites and web applications built for real customers—not just
+              websites and web applications built for real customers, not just
               good-looking demos.
             </p>
 

@@ -10,7 +10,7 @@ export function Process() {
         <SectionHeading
           eyebrow="Process"
           title="From idea to launch."
-          lead="A structured, transparent approach — so you always know what's happening and what comes next."
+          lead="A structured, transparent approach, so you always know what's happening and what comes next."
         />
 
         <ol className="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line lg:mt-16 lg:grid-cols-4">

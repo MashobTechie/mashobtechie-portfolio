@@ -6,8 +6,8 @@ import { cn } from "@/lib/cn";
 
 /**
  * Renders a project screenshot, or a designed placeholder frame when one has
- * not been supplied yet. Keeps the layout honest and complete either way —
- * adding `src` to the image in `content/projects.ts` is the only change needed.
+ * not been supplied yet. Keeps the layout honest and complete either way.
+ * Adding `src` to the image in `content/projects.ts` is the only change needed.
  */
 export function ProjectMedia({
   image,
@@ -43,7 +43,7 @@ export function ProjectMedia({
   return (
     <div
       role="img"
-      aria-label={`${image.alt} — screenshot pending`}
+      aria-label={`${image.alt}, screenshot pending`}
       className={cn(
         "relative flex items-center justify-center overflow-hidden bg-canvas",
         className,

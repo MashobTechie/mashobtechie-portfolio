@@ -4,7 +4,7 @@
  * IMAGES: every `src` here is optional. Where a screenshot has not been
  * supplied yet, the media components render a designed placeholder frame
  * instead of a broken image. To light one up, drop the file into
- * `public/work/` and add its path — nothing else needs to change.
+ * `public/work/` and add its path. Nothing else needs to change.
  *
  * OUTCOMES: `impact` entries are qualitative by default. Add a `metric`,
  * or an entry under `numbers`, only when there is a real figure the client
@@ -30,18 +30,18 @@ export type ImpactPoint = {
 };
 
 /**
- * A hard number for "05 — The Numbers".
+ * A hard number for section 05, The Numbers.
  *
  * Only ever populated with a figure the client has actually reported. A
  * project with nothing measured leaves `numbers` undefined and the section
- * does not render — an absent section reads honestly, an invented one does
+ * does not render. An absent section reads honestly, an invented one does
  * not survive first contact with a prospect who asks about it.
  */
 export type Metric = {
   /** The figure itself, pre-formatted, e.g. "₦1M+". */
   value: string;
   label: string;
-  /** Qualifier — window, source, or what the baseline was. */
+  /** Qualifier: window, source, or what the baseline was. */
   note?: string;
 };
 
@@ -49,7 +49,7 @@ export type Project = {
   slug: string;
   name: string;
   category: string;
-  /** One line for cards — business outcome, not stack. */
+  /** One line for cards: business outcome, not stack. */
   summary: string;
   /** Longer positioning line for the case-study header. */
   intro: string;
@@ -61,24 +61,24 @@ export type Project = {
   client?: string;
   services: string[];
   tech: string[];
-  /** 01 — The Problem. What was broken or missing. */
+  /** 01. The Problem. What was broken or missing. */
   challenge: string[];
-  /** 02 — The Goal. What the business needed to happen. */
+  /** 02. The Goal. What the business needed to happen. */
   goal?: string[];
-  /** 03 — My Role. What was actually done, beyond the one-line `role`. */
+  /** 03. My Role. What was done, beyond the one-line `role`. */
   roleDetail?: string[];
-  /** 04 — The Solution. */
+  /** 04. The Solution. */
   solution: string[];
   features: { title: string; detail: string }[];
-  /** 05 — The Numbers. Verified figures only; omit for unmeasured work. */
+  /** 05. The Numbers. Verified figures only. Omit for unmeasured work. */
   numbers?: Metric[];
-  /** 06 — The Product. */
+  /** 06. The Product. */
   gallery: ProjectImage[];
-  /** 07 — The Technical Build. Architecture, integrations, decisions. */
+  /** 07. The Technical Build. Architecture, integrations, decisions. */
   technicalBuild?: { title: string; detail: string }[];
-  /** 08 — The Outcome. */
+  /** 08. The Outcome. */
   impact: ImpactPoint[];
-  /** 09 — Lessons. */
+  /** 09. Lessons. */
   lessons?: string[];
   /** Live URL, when the project is public and shareable. */
   liveUrl?: string;
@@ -90,17 +90,17 @@ export const projects: Project[] = [
     name: "Respora",
     category: "SaaS Platform",
     liveUrl: "https://respora.app",
-    timeline: "March 2026 — ongoing",
+    timeline: "March 2026 to now",
     summary:
       "My own product: a two-sided research platform giving Nigerian institutions verified respondents, and respondents airtime and data for their time.",
     intro:
-      "Nigerian researchers run surveys on Google Forms and hope strangers answer them. Respondents give up their time and data allowance for nothing. Respora is the platform I built to fix both halves at once — a verified respondent panel with an incentive layer, and the tooling researchers need to run a study against it.",
+      "Nigerian researchers run surveys on Google Forms and hope strangers answer them. Respondents give up their time and data allowance for nothing. Respora is the platform I built to fix both halves at once: a verified respondent panel with an incentive layer, and the tooling researchers need to run a study against it.",
     featured: true,
     cover: {
       src: "/work/respora-home.webp",
-      alt: "Respora home page — Nigeria's AI-powered research and data intelligence platform",
+      alt: "Respora home page, showing its positioning as an AI-powered research and data intelligence platform for Nigeria",
     },
-    role: "Founder — product, full-stack engineering and operations",
+    role: "Founder. Product, full-stack engineering and operations",
     services: [
       "Product design",
       "Full-stack development",
@@ -122,18 +122,18 @@ export const projects: Project[] = [
     ],
     goal: [
       "Give researchers access to verified Nigerian respondents they have no personal connection to, with demographic targeting Google Forms cannot offer.",
-      "Make answering a survey worth a respondent's time in a currency that is actually useful to them locally — airtime and data, not a promise of a prize draw.",
+      "Make answering a survey worth a respondent's time in a currency that is useful to them locally: airtime and data, not a promise of a prize draw.",
       "Keep both sides moving. The platform has to sequence supply and demand so neither half sits idle waiting for the other.",
       "Run at a cost that Nigerian academic budgets can absorb, which rules out most of the international panel providers outright.",
     ],
     roleDetail: [
-      "This one is mine end to end. I designed the product, built the platform, and run the operations behind it — I am the founder, not a contractor who shipped and left.",
+      "This one is mine end to end. I designed the product, built the platform, and run the operations behind it. I am the founder, not a contractor who shipped and left.",
       "That means the engineering decisions and the business ones are the same decisions: what a coin is worth, how a respondent is verified, when a study closes, what a researcher is allowed to target.",
       "It is also the project where I learned what a two-sided market actually demands, which is a different discipline from building a site for a client with a known audience.",
     ],
     solution: [
       "Two distinct products in one platform. Respondents get a mobile-first flow: browse available studies, complete them, and redeem earned coins for airtime or data. Researchers get study creation, demographic targeting, live response monitoring and structured reporting.",
-      "The incentive layer is the mechanism, not a marketing gimmick. Coins are earned per completed study and redeemed against airtime and data — a reward with real local value, which is what separates a completion rate that works from one that does not.",
+      "The incentive layer is the mechanism, not a marketing gimmick. Coins are earned per completed study and redeemed against airtime and data, a reward with real local value. That is what separates a completion rate that works from one that does not.",
       "Verification sits underneath both sides. A researcher paying for responses needs to know a respondent is a real, distinct Nigerian person, so the panel is verified rather than open signup.",
       "Analytics and export turn raw responses into something a researcher can put in front of a supervisor or a board without rebuilding it in a spreadsheet first.",
     ],
@@ -196,7 +196,7 @@ export const projects: Project[] = [
       {
         src: "/work/respora-two-sides.webp",
         alt: "Respora section explaining the respondent and researcher sides of the platform",
-        caption: "Two products in one platform — respondent and researcher",
+        caption: "Two products in one platform, respondent and researcher",
         span: "wide",
       },
       {
@@ -210,7 +210,7 @@ export const projects: Project[] = [
       {
         title: "Supply before demand, deliberately",
         detail:
-          "A two-sided market cannot launch both sides at once. Building the respondent panel first meant the first researcher to arrive found an audience waiting, rather than an empty platform — the opposite order produces something with nothing to sell.",
+          "A two-sided market cannot launch both sides at once. Building the respondent panel first meant the first researcher to arrive found an audience waiting, rather than an empty platform. The opposite order produces something with nothing to sell.",
       },
       {
         title: "Coins as an internal ledger",
@@ -225,7 +225,7 @@ export const projects: Project[] = [
       {
         title: "Mobile-first as a constraint",
         detail:
-          "Respondents arrive on phones over metered data. Every design decision — payload size, form length, session handling — is bounded by that rather than by what looks good on a laptop.",
+          "Respondents arrive on phones over metered data. Every design decision (payload size, form length, session handling) is bounded by that rather than by what looks good on a laptop.",
       },
       {
         title: "Two interfaces, one data model",
@@ -243,7 +243,7 @@ export const projects: Project[] = [
       {
         label: "Research that reaches beyond a contact list",
         detail:
-          "Researchers can survey a targeted Nigerian audience they have no personal relationship with — the thing Google Forms structurally cannot do.",
+          "Researchers can survey a targeted Nigerian audience they have no personal relationship with. Google Forms structurally cannot do that.",
       },
       {
         label: "Respondents paid in something useful",
@@ -266,9 +266,9 @@ export const projects: Project[] = [
     timeline: "July 2026",
     liveUrl: "https://deniyisinterior.com.ng",
     summary:
-      "A décor and furniture store for an Ibadan brand — twelve product categories, Paystack checkout, a priced styling service and an admin panel the owner runs herself.",
+      "A décor and furniture store for an Ibadan brand, with twelve product categories, Paystack checkout, a priced styling service and an admin panel the owner runs herself.",
     intro:
-      "Deniyi's Interiors & More sells quality home décor at accessible prices in Ibadan, delivering citywide and nationwide. It went from taking orders in DMs to a full storefront with working payments, a services arm and a Google presence — and processed over ₦1,000,000 in its first month live.",
+      "Deniyi's Interiors & More sells quality home décor at accessible prices in Ibadan, delivering citywide and nationwide. It went from taking orders in DMs to a full storefront with working payments, a services arm and a Google presence, and it processed over ₦1,000,000 in its first month live.",
     featured: true,
     cover: {
       src: "/work/deniyis-home.webp",
@@ -295,10 +295,10 @@ export const projects: Project[] = [
     challenge: [
       "The business had no way to sell online. Orders arrived through DMs, every price and stock question was answered by hand, and there was no record of an order beyond a chat thread.",
       "It was also invisible to search. Someone in Ibadan looking for a centre rug or a wall mirror had no way to find the brand on Google, so the only demand was demand that already knew the name.",
-      "And there were really two businesses to serve. Stock — rugs, mirrors, chandeliers, kitchen electronics — sells from a cart. Interior styling sells from a conversation, at a very different price point. One site had to do both without either feeling bolted on.",
+      "And there were really two businesses to serve. Stock, meaning rugs, mirrors, chandeliers and kitchen electronics, sells from a cart. Interior styling sells from a conversation, at a very different price point. One site had to do both without either feeling bolted on.",
     ],
     goal: [
-      "Sell the stock online properly: let a customer browse the real catalogue, pay, and track the order — without a conversation having to happen first.",
+      "Sell the stock online properly: let a customer browse the real catalogue, pay, and track the order, without a conversation having to happen first.",
       "Get found. The brand needed to appear when someone nearby searched for what it sells, rather than relying entirely on word of mouth.",
       "Give the styling work a credible route in. Published prices qualify an enquiry before it arrives, so the higher-value conversations start further along.",
       "Take the DMs off the owner. Leads arriving from TikTok and Instagram had to be able to buy on their own, instead of every sale costing a back-and-forth conversation.",
@@ -307,12 +307,12 @@ export const projects: Project[] = [
     roleDetail: [
       "Sole designer and developer, end to end. I designed the interface around the brand's white, gold and black identity, then built the storefront, checkout, services pages, project gallery and admin panel.",
       "Beyond the build: domain and SSL configuration, deployment to Vercel, technical SEO, and setting up Google Business Profile and Search Console so the brand could be found locally.",
-      "I also ran the handover training — uploading and editing products, managing categories, working through orders — so daily operation sits with the owner rather than with me.",
+      "I also ran the handover training, covering uploading and editing products, managing categories and working through orders, so daily operation sits with the owner rather than with me.",
     ],
     solution: [
       "A storefront spanning twelve categories, from Turkish centre rugs and mirrors to chandeliers, figurines and kitchen electronics. Search, category filtering, sale pricing, customer accounts and order tracking all ship as part of it.",
       "Checkout runs on Paystack in Naira, covering the payment methods customers in the market actually use, with order state tracked end to end so both sides know where an order stands.",
-      "The styling service is published with real starting prices — consultation, spatial planning and sourcing, then on-site styling and installation — so a prospect self-qualifies before making contact instead of opening with \"how much?\".",
+      "The styling service is published with real starting prices for consultation, spatial planning and sourcing, then on-site styling and installation. A prospect self-qualifies before making contact instead of opening with \"how much?\".",
       "A gallery of completed residential, commercial and studio projects does the persuading for that service, and an admin area covers products, categories, media and orders for the owner.",
     ],
     features: [
@@ -339,7 +339,7 @@ export const projects: Project[] = [
       {
         title: "Completed-project gallery",
         detail:
-          "Residential, commercial and studio work, filterable — the proof behind the styling service.",
+          "Residential, commercial and studio work, filterable. The proof behind the styling service.",
       },
       {
         title: "Self-serve admin",
@@ -408,7 +408,7 @@ export const projects: Project[] = [
       {
         title: "Owner-facing admin",
         detail:
-          "A role-gated back office for products, categories, media and orders — the reason the site does not generate developer invoices for routine changes.",
+          "A role-gated back office for products, categories, media and orders. It is the reason the site does not generate developer invoices for routine changes.",
       },
     ],
     impact: [
@@ -442,7 +442,7 @@ export const projects: Project[] = [
       {
         label: "Owner-operated catalogue",
         detail:
-          "Products, pricing and stock are managed in-house after handover training — no developer in the loop for day-to-day changes.",
+          "Products, pricing and stock are managed in-house after handover training, with no developer in the loop for day-to-day changes.",
       },
     ],
   },
@@ -452,10 +452,10 @@ export const projects: Project[] = [
     name: "Cutiez Couture",
     category: "Fashion E-Commerce",
     client: "Cutiez Couture",
-    timeline: "December 2025 — launched January 2026",
+    timeline: "December 2025, launched January 2026",
     liveUrl: "https://www.cutiezcouture.com.ng",
     summary:
-      "A custom unisex fashion brand selling from Instagram and TikTok — given a landing page that converts social traffic and a shop that takes the order without a DM.",
+      "A custom unisex fashion brand selling from Instagram and TikTok, given a landing page that converts social traffic and a shop that takes the order without a DM.",
     intro:
       "Cutiez Couture had an audience on Instagram and TikTok and no way to serve it except by hand. Every order arrived as a WhatsApp message the team had to answer, size and price individually. Now a landing page catches the social traffic and hands it to a storefront that sizes, quotes and takes the order on its own.",
     featured: true,
@@ -472,23 +472,23 @@ export const projects: Project[] = [
     ],
     tech: ["React", "Vite", "TypeScript", "Tailwind CSS", "Vercel"],
     challenge: [
-      "The brand's demand was already there — Instagram and TikTok were producing leads steadily. Converting them was the bottleneck. Every single order ran through a WhatsApp conversation: what sizes exist, what it costs, what is in stock, how to pay.",
+      "The brand's demand was already there. Instagram and TikTok were producing leads steadily. Converting them was the bottleneck. Every single order ran through a WhatsApp conversation: what sizes exist, what it costs, what is in stock, how to pay.",
       "That does not scale, and it caps the business at the number of messages one person can answer in a day. Interest arriving overnight or during a shoot simply waited.",
-      "Custom sizing made it harder still. Cutiez sells made-to-fit unisex pieces, so \"what size are you?\" is a real conversation rather than a dropdown — which is exactly why it had stayed a manual process.",
+      "Custom sizing made it harder still. Cutiez sells made-to-fit unisex pieces, so \"what size are you?\" is a real conversation rather than a dropdown. That is exactly why it had stayed a manual process.",
     ],
     goal: [
       "Give social traffic somewhere to land that sells the brand, rather than dropping a shop link into a bio and hoping.",
       "Let a customer choose a size, see a price and place an order without anyone answering a message.",
       "Keep custom sizing available, since it is the brand's differentiator, without forcing every order back into a DM.",
-      "Be findable outside social — the brand had no presence in search at all.",
+      "Be findable outside social, since the brand had no presence in search at all.",
     ],
     roleDetail: [
       "Designed and built both properties: the marketing landing page at the brand's own domain, and the storefront it feeds.",
-      "The split is deliberate. The landing page exists to convert social traffic — story, proof, best sellers, a single obvious call to action. The shop exists to take the order. Keeping them separate means the pitch can change as fast as the brand's campaigns do, without touching the store.",
+      "The split is deliberate. The landing page exists to convert social traffic through story, proof, best sellers and a single obvious call to action. The shop exists to take the order. Keeping them separate means the pitch can change as fast as the brand's campaigns do, without touching the store.",
       "Also handled deployment for both, and set up the Google Business Profile that gives the brand a presence in search alongside the social channels.",
     ],
     solution: [
-      "The landing page opens on the brand's positioning — custom unisex fashion, \"Redefining Decency in Fashion\" — then runs the story, the four things that make the label different, and a row of best sellers with prices. Every route through it ends at the same place: shop your style.",
+      "The landing page opens on the brand's positioning as custom unisex fashion, \"Redefining Decency in Fashion\", then runs the story, the four things that make the label different, and a row of best sellers with prices. Every route through it ends at the same place: shop your style.",
       "The storefront carries the full catalogue with featured pieces, quick view, search, customer accounts and an order history, so a returning customer picks up where they left off.",
       "Product pages solve the sizing conversation directly: standard sizes from XS to XXL, a size guide, and a \"Need custom size?\" route for the made-to-measure work. The common case self-serves and only genuine custom orders start a conversation.",
       "Payment currently completes by bank transfer, which is how the brand's customers already pay. The store captures the order and its details; a gateway integration is the natural next step rather than a blocker to launching.",
@@ -512,7 +512,7 @@ export const projects: Project[] = [
       {
         title: "Custom sizing kept",
         detail:
-          "A dedicated route for made-to-measure orders — the brand's differentiator survives the automation.",
+          "A dedicated route for made-to-measure orders, so the brand's differentiator survives the automation.",
       },
       {
         title: "Accounts and order history",
@@ -536,7 +536,7 @@ export const projects: Project[] = [
       {
         src: "/work/cutiez-landing.webp",
         alt: "Cutiez Couture landing page hero",
-        caption: "Landing page — built to convert Instagram and TikTok traffic",
+        caption: "Landing page, built to convert Instagram and TikTok traffic",
         span: "wide",
       },
       {
@@ -548,7 +548,7 @@ export const projects: Project[] = [
       {
         src: "/work/cutiez-product.webp",
         alt: "Cutiez Couture product page with size selection and add to bag",
-        caption: "Product page — sizes, size guide and a custom-size route",
+        caption: "Product page, with sizes, size guide and a custom-size route",
         span: "wide",
       },
     ],

@@ -20,7 +20,7 @@ export default function ServicesPage() {
       <PageHeader
         eyebrow="Services"
         title="I care about what the software does for the business."
-        lead="Bridging robust technical architecture and strategic business outcomes. I build solutions that drive measurable growth — not just code that compiles."
+        lead="Bridging robust technical architecture and strategic business outcomes. I build solutions that drive measurable growth, not just code that compiles."
       >
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <ButtonLink href="/contact">

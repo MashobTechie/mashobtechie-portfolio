@@ -122,7 +122,7 @@ export function InquiryForm() {
         </span>
         <h2 className="mt-6 text-h3">Your email is ready to send.</h2>
         <p className="mt-3 max-w-md text-[0.9375rem] leading-relaxed text-muted text-pretty">
-          Your mail app should have opened with everything filled in — press
+          Your mail app should have opened with everything filled in. Press
           send there and it reaches me. If nothing opened, use one of the
           routes below instead.
         </p>
@@ -261,7 +261,7 @@ export function InquiryForm() {
         </div>
       </div>
 
-      {/* Honeypot — hidden from people, irresistible to bots */}
+      {/* Honeypot: hidden from people, irresistible to bots */}
       <div aria-hidden="true" className="absolute -left-[9999px] opacity-0">
         <label htmlFor={`${formId}-website`}>Website</label>
         <input

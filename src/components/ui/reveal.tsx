@@ -28,7 +28,7 @@ export function Reveal({
     if (!node) return;
 
     // No IntersectionObserver (old browser, some test envs): show immediately.
-    // Written straight to the DOM rather than through state — this is an
+    // Written straight to the DOM rather than through state, since this is an
     // external-system update, and setState here would cascade a render.
     if (typeof IntersectionObserver === "undefined") {
       node.dataset.visible = "true";

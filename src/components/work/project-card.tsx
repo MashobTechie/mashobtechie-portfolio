@@ -7,7 +7,7 @@ import type { Project } from "@/content/projects";
 import { cn } from "@/lib/cn";
 
 /**
- * `feature` lays the card out side-by-side with a tall media panel — used for
+ * `feature` lays the card out side-by-side with a tall media panel, used for
  * the lead project. The default is a stacked card for the grid.
  */
 export function ProjectCard({

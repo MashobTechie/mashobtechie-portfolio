@@ -4,7 +4,7 @@ export const projectTypes = [
   "SaaS product or MVP",
   "Web application or dashboard",
   "Improving an existing product",
-  "Not sure yet — let's talk",
+  "Not sure yet, let's talk",
 ] as const;
 
 export const timelines = [
@@ -43,7 +43,7 @@ export function validateInquiry(input: Partial<Inquiry>): InquiryErrors {
   }
 
   if (!input.projectType) {
-    errors.projectType = "Pick the closest option — you can refine it later.";
+    errors.projectType = "Pick the closest option. You can refine it later.";
   }
 
   if (!input.message?.trim()) {
@@ -62,7 +62,7 @@ export function formatInquiry(inquiry: Inquiry) {
   return [
     `Name:      ${inquiry.name}`,
     `Email:     ${inquiry.email}`,
-    `Business:  ${inquiry.company || "—"}`,
+    `Business:  ${inquiry.company || "n/a"}`,
     `Building:  ${inquiry.projectType}`,
     `Timeline:  ${inquiry.timeline}`,
     "",
@@ -72,13 +72,13 @@ export function formatInquiry(inquiry: Inquiry) {
 
 /**
  * Builds the `mailto:` link the contact form hands to the visitor's mail
- * client. There is no server involved — the form composes the message and the
+ * client. There is no server involved. The form composes the message and the
  * visitor presses send, which means nothing can be silently swallowed by a
  * delivery service that was never configured.
  */
 export function inquiryMailto(inquiry: Inquiry, to: string) {
   const business = inquiry.company ? ` (${inquiry.company})` : "";
-  const subject = `Project inquiry — ${inquiry.name}${business}`;
+  const subject = `Project inquiry from ${inquiry.name}${business}`;
 
   return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
     formatInquiry(inquiry),

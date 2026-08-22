@@ -12,7 +12,7 @@ import { cn } from "@/lib/cn";
  *
  * Built on native scroll-snap rather than a slider library: swipe, trackpad
  * and keyboard scrolling all work for free, and it still functions with
- * JavaScript disabled — the buttons and dots are progressive enhancement
+ * JavaScript disabled. The buttons and dots are progressive enhancement
  * over a scroll container that is usable on its own.
  */
 export function ProjectGallery({

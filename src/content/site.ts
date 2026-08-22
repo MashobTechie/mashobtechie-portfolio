@@ -10,7 +10,7 @@
  * this site.
  *
  * Set NEXT_PUBLIC_SITE_URL in the Pxxl project's environment variables to the
- * project's URL — the free `<prefix>.pxxl.pro` subdomain assigned at deploy,
+ * project's URL: the free `<prefix>.pxxl.pro` subdomain assigned at deploy,
  * or a custom domain once one is connected. Pxxl injects no URL variable of
  * its own, so nothing can infer this; unset, it falls back to localhost, which
  * is right in development and wrong in production.
@@ -31,7 +31,7 @@ export const site = {
   url: resolveSiteUrl(),
 
   email: "mashobtechie@gmail.com",
-  location: "Available worldwide — remote",
+  location: "Available worldwide, remote",
 
   /**
    * WhatsApp is the channel clients in this market actually use, so it is a

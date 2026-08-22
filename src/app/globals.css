@@ -3,7 +3,7 @@
 /* ---------------------------------------------------------------
    MashobTechie design system
    Premium digital studio: warm off-white canvas, deep navy ink,
-   restrained blue accent. Light-only by design — the single dark
+   restrained blue accent. Light-only by design. The single dark
    surface is the CTA band, handled with explicit ink tokens.
    --------------------------------------------------------------- */
 
@@ -30,7 +30,7 @@
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* Editorial display scale — fluid, so mobile is designed, not squeezed */
+  /* Editorial display scale: fluid, so mobile is designed, not squeezed */
   --text-display: clamp(2.75rem, 1.55rem + 4.8vw, 4.25rem);
   --text-display--line-height: 1.05;
   --text-display--letter-spacing: -0.035em;
@@ -60,7 +60,7 @@
   --text-eyebrow--letter-spacing: 0.14em;
   --text-eyebrow--font-weight: 600;
 
-  /* Radius — moderate, never pill */
+  /* Radius: moderate, never pill */
   --radius-card: 12px;
   --radius-btn: 8px;
   --radius-media: 14px;
@@ -143,8 +143,8 @@
    *next* panel has got to.
 
    The receding panel scales from its top edge, so the incoming panel's curve
-   sits over a card that is visibly stepping back — which is what reads as
-   depth rather than a plain overlap.
+   sits over a card that is visibly stepping back. That is what reads as depth
+   rather than a plain overlap.
 --------------------------------------------------------------------------- */
 .section-stack[data-stacked="true"] > .section-stack-panel {
   position: sticky;
@@ -180,7 +180,7 @@
   opacity: calc(0.16 * var(--stack-progress, 0));
 }
 
-/* Nothing to recede into on a narrow screen — the curve alone carries it. */
+/* Nothing to recede into on a narrow screen, so the curve alone carries it. */
 @media (max-width: 640px) {
   .section-stack[data-stacked="true"] > .section-stack-panel {
     transform: none;

@@ -10,7 +10,7 @@ import { projects } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Selected products, websites and digital experiences — SaaS platforms, e-commerce storefronts and custom web applications built for real businesses.",
+    "Selected products, websites and digital experiences: SaaS platforms, e-commerce storefronts and custom web applications built for real businesses.",
 };
 
 export default function WorkPage() {
@@ -19,7 +19,7 @@ export default function WorkPage() {
       <PageHeader
         eyebrow="Selected Work"
         title="Products, storefronts and platforms built to do a job."
-        lead="A few of the products, websites and digital experiences I've helped bring to life — and what each one had to solve."
+        lead="A few of the products, websites and digital experiences I've helped bring to life, and what each one had to solve."
       />
 
       <Section>

@@ -10,7 +10,7 @@ export function ServicesGrid({
   showIncludes = false,
   className,
 }: {
-  /** Case-study-depth detail — used on the Services page, not the homepage. */
+  /** Case-study-depth detail, used on the Services page, not the homepage. */
   showIncludes?: boolean;
   className?: string;
 }) {

@@ -26,7 +26,7 @@ export function AboutPreview() {
             <div className="mt-6 flex flex-col gap-4 text-lead text-muted text-pretty">
               <p>
                 I&apos;m a software engineer and SaaS builder. Most of my work
-                starts the same way — someone has an idea, a business, or a
+                starts the same way. Someone has an idea, a business, or a
                 problem that has outgrown spreadsheets and WhatsApp, and they
                 need it to become something real.
               </p>
@@ -40,7 +40,7 @@ export function AboutPreview() {
               <p>
                 I&apos;ve built in startup environments where scope changes
                 weekly, and for established businesses where reliability is
-                everything. Both taught me the same lesson — ship something
+                everything. Both taught me the same lesson: ship something
                 useful, then make it better.
               </p>
             </div>

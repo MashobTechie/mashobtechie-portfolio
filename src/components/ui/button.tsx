@@ -21,7 +21,7 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  // 44px / 52px tall — comfortably touch-friendly
+  // 44px / 52px tall, comfortably touch-friendly
   md: "h-11 px-5 text-[0.9375rem]",
   lg: "h-13 px-7 text-base",
 };

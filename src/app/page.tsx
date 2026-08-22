@@ -15,7 +15,7 @@ export default function HomePage() {
       <Hero />
       <TrustStrip />
 
-      {/* Everything from here to the footer stacks — each panel pins and the
+      {/* Everything from here to the footer stacks. Each panel pins and the
           next scrolls over it. The hero and trust strip stay in normal flow;
           pinning a thin strip reads as a bug rather than an effect. */}
       <SectionStack>
