@@ -8,6 +8,7 @@ import { Tag } from "@/components/ui/card";
 import { ArrowRight, ButtonLink } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/reveal";
+import { ProjectGallery } from "@/components/work/project-gallery";
 import { ProjectMedia } from "@/components/work/project-media";
 import { CallToAction } from "@/components/sections/cta";
 import { adjacentProjects, getProject, projects } from "@/content/projects";
@@ -41,6 +42,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
   if (!project) notFound();
 
   const { previous, next } = adjacentProjects(project.slug);
+  const sameNeighbour = previous?.slug === next?.slug;
 
   const meta = [
     project.client ? { label: "Client", value: project.client } : null,
@@ -241,38 +243,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
               A look at what shipped
             </h2>
 
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:gap-6">
-              {project.gallery.map((image, index) => (
-                <Reveal
-                  key={image.alt}
-                  delay={index * 70}
-                  className={cn(
-                    (image.span === "wide" || image.span === "full") &&
-                      "sm:col-span-2",
-                  )}
-                >
-                  <figure className="overflow-hidden rounded-card border border-line bg-surface shadow-card">
-                    <ProjectMedia
-                      image={image}
-                      label={project.name}
-                      sizes={
-                        image.span === "half"
-                          ? "(max-width: 640px) 100vw, 45vw"
-                          : "(max-width: 640px) 100vw, 90vw"
-                      }
-                      className={
-                        image.span === "half" ? "aspect-4/3" : "aspect-16/9"
-                      }
-                    />
-                    {image.caption ? (
-                      <figcaption className="border-t border-line px-6 py-4 text-sm text-muted">
-                        {image.caption}
-                      </figcaption>
-                    ) : null}
-                  </figure>
-                </Reveal>
-              ))}
-            </div>
+            <ProjectGallery images={project.gallery} label={project.name} />
           </Container>
         </Section>
       ) : null}
@@ -376,34 +347,49 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </Section>
       ) : null}
 
-      {/* ---------- Prev / next ---------- */}
+      {/* ---------- Prev / next ----------
+          With only two case studies both slots resolve to the same project,
+          so the backwards link is dropped rather than shown twice. */}
       {previous && next ? (
         <Container>
           <nav
             aria-label="More case studies"
-            className="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2"
+            className={cn(
+              "grid gap-px overflow-hidden rounded-card border border-line bg-line",
+              !sameNeighbour && "sm:grid-cols-2",
+            )}
           >
-            <Link
-              href={`/work/${previous.slug}`}
-              className="group bg-surface p-7 transition-colors hover:bg-canvas sm:p-8"
-            >
-              <span className="text-eyebrow uppercase text-muted-soft">
-                Previous
-              </span>
-              <span className="mt-3 flex items-center gap-2 text-h3 text-ink">
-                <ArrowRight className="size-4 rotate-180 text-muted transition-transform duration-300 group-hover:-translate-x-1" />
-                {previous.name}
-              </span>
-            </Link>
+            {sameNeighbour ? null : (
+              <Link
+                href={`/work/${previous.slug}`}
+                className="group bg-surface p-7 transition-colors hover:bg-canvas sm:p-8"
+              >
+                <span className="text-eyebrow uppercase text-muted-soft">
+                  Previous
+                </span>
+                <span className="mt-3 flex items-center gap-2 text-h3 text-ink">
+                  <ArrowRight className="size-4 rotate-180 text-muted transition-transform duration-300 group-hover:-translate-x-1" />
+                  {previous.name}
+                </span>
+              </Link>
+            )}
 
             <Link
               href={`/work/${next.slug}`}
-              className="group bg-surface p-7 transition-colors hover:bg-canvas sm:p-8 sm:text-right"
+              className={cn(
+                "group bg-surface p-7 transition-colors hover:bg-canvas sm:p-8",
+                !sameNeighbour && "sm:text-right",
+              )}
             >
               <span className="text-eyebrow uppercase text-muted-soft">
-                Next
+                {sameNeighbour ? "Next case study" : "Next"}
               </span>
-              <span className="mt-3 flex items-center gap-2 text-h3 text-ink sm:justify-end">
+              <span
+                className={cn(
+                  "mt-3 flex items-center gap-2 text-h3 text-ink",
+                  !sameNeighbour && "sm:justify-end",
+                )}
+              >
                 {next.name}
                 <ArrowRight className="size-4 text-muted transition-transform duration-300 group-hover:translate-x-1" />
               </span>
