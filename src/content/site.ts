@@ -45,7 +45,7 @@ export const site = {
 
   social: [
     { label: "GitHub", href: "https://github.com/MashobTechie" },
-    { label: "X", href: "https://x.com/maashob_techie" },
+    { label: "X", href: "https://x.com/mashob_techie" },
     { label: "Instagram", href: "https://instagram.com/mashobtechie" },
     { label: "TikTok", href: "https://tiktok.com/@mashob_techie" },
   ],
