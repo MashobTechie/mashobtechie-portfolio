@@ -69,6 +69,7 @@ export function SectionStack({ children }: { children: React.ReactNode }) {
           panel.style.removeProperty("--stack-progress");
           contents[index].style.transform = "";
           panel.style.height = "";
+          delete panel.dataset.pinned;
         });
         return;
       }
@@ -93,20 +94,28 @@ export function SectionStack({ children }: { children: React.ReactNode }) {
         const frameHeight = viewport - deckTop;
         const contentHeight = contents[index].offsetHeight;
 
+        // The last panel does not pin. Nothing in the stack covers it, and
+        // pinning it would leave the footer to scroll over it — the footer is
+        // the end of the page, not another card in the deck. Left in normal
+        // flow it still slides over the panels behind it, and the footer then
+        // simply follows it down.
+        const isLast = index === count - 1;
+        panel.dataset.pinned = isLast ? "false" : "true";
+
         deckTops[index] = deckTop;
-        panel.style.top = `${deckTop}px`;
+        panel.style.top = isLast ? "" : `${deckTop}px`;
 
         // How far this panel's content must travel to be read in its frame.
-        maxScrubs[index] = Math.max(0, contentHeight - frameHeight);
+        // An unpinned panel scrolls its own content, so it never scrubs.
+        maxScrubs[index] = isLast
+          ? 0
+          : Math.max(0, contentHeight - frameHeight);
 
         // Panels claim their frame plus a dwell beyond whatever their content
         // needs. The dwell is the stretch of scroll where the panel sits
         // pinned, fully scrubbed and not yet covered — without it the foot of
-        // a long section is revealed and hidden in the same instant.
-        //
-        // The last panel is the exception: nothing covers it, so buying it
-        // dwell would only add dead scroll between it and the footer.
-        const isLast = index === count - 1;
+        // a long section is revealed and hidden in the same instant. The last
+        // panel needs neither, so it keeps its natural height.
         const height = isLast
           ? contentHeight
           : Math.max(contentHeight, frameHeight) +

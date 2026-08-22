@@ -166,6 +166,12 @@
   will-change: transform;
 }
 
+/* The closing panel stays in flow so the footer follows it rather than
+   sliding over it. It still paints above the pinned panels behind. */
+.section-stack[data-stacked="true"] > .section-stack-panel[data-pinned="false"] {
+  position: relative;
+}
+
 .section-stack-scrim {
   position: absolute;
   inset: 0;

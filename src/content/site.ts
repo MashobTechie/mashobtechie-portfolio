@@ -1,10 +1,30 @@
 /**
  * Single source of truth for identity, contact routes and nav.
- *
- * `url` is still the intended domain rather than a live one — it drives
- * metadataBase, the sitemap, robots and every OG tag, so it must be set to
- * the real deployment URL before launch.
  */
+
+/**
+ * Canonical origin, resolved from the environment rather than hard-coded.
+ *
+ * It feeds metadataBase, the sitemap, robots.txt and every OG tag, so a wrong
+ * value points every canonical URL and share preview at a domain that is not
+ * ours. Resolving it means the deployment is correct with no edit required,
+ * and buying a domain later is one environment variable rather than a code
+ * change someone has to remember.
+ *
+ *   NEXT_PUBLIC_SITE_URL          set this once there is a custom domain
+ *   VERCEL_PROJECT_PRODUCTION_URL supplied by Vercel; the stable production
+ *                                 host, not the per-deploy preview URL
+ *   localhost                     development fallback
+ */
+function resolveSiteUrl() {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL;
+  if (explicit) return explicit.replace(/\/$/, "");
+
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  if (vercel) return `https://${vercel}`;
+
+  return "http://localhost:3000";
+}
 
 export const site = {
   name: "MashobTechie",
@@ -12,7 +32,7 @@ export const site = {
   positioning: "Helping businesses launch, grow & sell online.",
   description:
     "Full-stack software engineer and SaaS builder. I help businesses launch, grow and sell online with modern websites and web applications built for real customers.",
-  url: "https://mashobtechie.com",
+  url: resolveSiteUrl(),
 
   email: "mashobtechie@gmail.com",
   location: "Available worldwide — remote",
