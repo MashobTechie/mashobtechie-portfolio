@@ -132,3 +132,25 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Stacked scroll
+   Sections pin and the next scrolls up over them. The `top` offset is set per
+   panel from JS (see components/layout/section-stack.tsx) because a panel
+   taller than the viewport needs a negative offset to scroll through fully
+   before pinning. Panels are opaque so the one underneath cannot show through;
+   sections that set their own background paint over the panel's.
+--------------------------------------------------------------------------- */
+.section-stack[data-stacked="true"] > .section-stack-panel {
+  position: sticky;
+  background-color: var(--color-canvas);
+  /* Soft lift so the leading edge of each panel reads as an overlap. */
+  box-shadow: 0 -20px 40px -28px rgb(11 31 58 / 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-stack > .section-stack-panel {
+    position: static;
+    box-shadow: none;
+  }
+}
