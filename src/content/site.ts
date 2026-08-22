@@ -3,28 +3,21 @@
  */
 
 /**
- * Canonical origin, resolved from the environment rather than hard-coded.
+ * Canonical origin.
  *
- * It feeds metadataBase, the sitemap, robots.txt and every OG tag, so a wrong
- * value points every canonical URL and share preview at a domain that is not
- * ours. Resolving it means the deployment is correct with no edit required,
- * and buying a domain later is one environment variable rather than a code
- * change someone has to remember.
+ * Feeds metadataBase, the sitemap, robots.txt and every OG tag, so a wrong
+ * value points every canonical URL and share preview somewhere that is not
+ * this site.
  *
- *   NEXT_PUBLIC_SITE_URL          set this explicitly. Required on Pxxl, which
- *                                 does not inject a URL variable — without it
- *                                 production falls through to localhost and
- *                                 every canonical URL and OG tag is wrong.
- *   VERCEL_PROJECT_PRODUCTION_URL supplied by Vercel only; the stable
- *                                 production host, not a per-deploy preview
- *   localhost                     development fallback
+ * Set NEXT_PUBLIC_SITE_URL in the Pxxl project's environment variables to the
+ * project's URL — the free `<prefix>.pxxl.pro` subdomain assigned at deploy,
+ * or a custom domain once one is connected. Pxxl injects no URL variable of
+ * its own, so nothing can infer this; unset, it falls back to localhost, which
+ * is right in development and wrong in production.
  */
 function resolveSiteUrl() {
-  const explicit = process.env.NEXT_PUBLIC_SITE_URL;
-  if (explicit) return explicit.replace(/\/$/, "");
-
-  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
-  if (vercel) return `https://${vercel}`;
+  const configured = process.env.NEXT_PUBLIC_SITE_URL;
+  if (configured) return configured.replace(/\/$/, "");
 
   return "http://localhost:3000";
 }
