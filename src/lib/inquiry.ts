@@ -64,3 +64,34 @@ export function validateInquiry(input: Partial<Inquiry>): InquiryErrors {
 
   return errors;
 }
+
+/**
+ * Renders an inquiry as plain text for an email body.
+ */
+export function formatInquiry(inquiry: Inquiry) {
+  return [
+    `Name:      ${inquiry.name}`,
+    `Email:     ${inquiry.email}`,
+    `Business:  ${inquiry.company || "—"}`,
+    `Building:  ${inquiry.projectType}`,
+    `Budget:    ${inquiry.budget}`,
+    `Timeline:  ${inquiry.timeline}`,
+    "",
+    inquiry.message,
+  ].join("\n");
+}
+
+/**
+ * Builds the `mailto:` link the contact form hands to the visitor's mail
+ * client. There is no server involved — the form composes the message and the
+ * visitor presses send, which means nothing can be silently swallowed by a
+ * delivery service that was never configured.
+ */
+export function inquiryMailto(inquiry: Inquiry, to: string) {
+  const business = inquiry.company ? ` (${inquiry.company})` : "";
+  const subject = `Project inquiry — ${inquiry.name}${business}`;
+
+  return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+    formatInquiry(inquiry),
+  )}`;
+}

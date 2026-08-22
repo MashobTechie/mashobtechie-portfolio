@@ -45,16 +45,31 @@ export default function ContactPage() {
 
             <div className="mt-8 border-t border-line pt-8">
               <h2 className="text-eyebrow uppercase text-muted-soft">
-                Prefer email
+                Rather skip the form
               </h2>
-              <a
-                href={`mailto:${site.email}`}
-                className="mt-3 inline-flex items-center gap-2.5 text-[0.9375rem] font-medium text-accent transition-colors hover:text-accent-hover"
-              >
-                <Icon name="mail" className="size-4" />
-                {site.email}
-              </a>
-              <p className="mt-2 text-sm text-muted">{site.location}</p>
+              <ul className="mt-3 flex flex-col gap-3">
+                <li>
+                  <a
+                    href={site.whatsapp.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="inline-flex items-center gap-2.5 text-[0.9375rem] font-medium text-accent transition-colors hover:text-accent-hover"
+                  >
+                    <Icon name="arrowUpRight" className="size-4" />
+                    WhatsApp {site.whatsapp.display}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${site.email}`}
+                    className="inline-flex items-center gap-2.5 text-[0.9375rem] font-medium text-accent transition-colors hover:text-accent-hover"
+                  >
+                    <Icon name="mail" className="size-4" />
+                    {site.email}
+                  </a>
+                </li>
+              </ul>
+              <p className="mt-3 text-sm text-muted">{site.location}</p>
             </div>
 
             <div className="mt-8 border-t border-line pt-8">

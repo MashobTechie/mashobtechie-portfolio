@@ -1,8 +1,9 @@
 /**
- * Single source of truth for identity, contact details and nav.
+ * Single source of truth for identity, contact routes and nav.
  *
- * Contact handles are placeholders — replace the values in `site.social`
- * and `site.email` with real ones before launch. Nothing else needs to change.
+ * `url` is still the intended domain rather than a live one — it drives
+ * metadataBase, the sitemap, robots and every OG tag, so it must be set to
+ * the real deployment URL before launch.
  */
 
 export const site = {
@@ -13,15 +14,24 @@ export const site = {
     "Full-stack software engineer and SaaS builder. I help businesses launch, grow and sell online with modern websites and web applications built for real customers.",
   url: "https://mashobtechie.com",
 
-  // TODO: social handles below are still placeholders — replace before launch.
   email: "mashobtechie@gmail.com",
   location: "Available worldwide — remote",
 
+  /**
+   * WhatsApp is the channel clients in this market actually use, so it is a
+   * first-class contact route rather than a footer afterthought. `wa.me`
+   * wants the number in full international form with no plus or spaces.
+   */
+  whatsapp: {
+    display: "+234 907 116 2911",
+    href: "https://wa.me/2349071162911",
+  },
+
   social: [
     { label: "GitHub", href: "https://github.com/MashobTechie" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/mashobtechie" },
+    { label: "X", href: "https://x.com/maashob_techie" },
     { label: "Instagram", href: "https://instagram.com/mashobtechie" },
-    { label: "TikTok", href: "https://tiktok.com/@mashobtechie" },
+    { label: "TikTok", href: "https://tiktok.com/@mashob_techie" },
   ],
 
   nav: [

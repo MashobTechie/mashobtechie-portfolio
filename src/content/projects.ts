@@ -86,10 +86,184 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "respora",
+    name: "Respora",
+    category: "SaaS Platform",
+    liveUrl: "https://respora.app",
+    timeline: "March 2026 — ongoing",
+    summary:
+      "My own product: a two-sided research platform giving Nigerian institutions verified respondents, and respondents airtime and data for their time.",
+    intro:
+      "Nigerian researchers run surveys on Google Forms and hope strangers answer them. Respondents give up their time and data allowance for nothing. Respora is the platform I built to fix both halves at once — a verified respondent panel with an incentive layer, and the tooling researchers need to run a study against it.",
+    featured: true,
+    cover: {
+      src: "/work/respora-home.webp",
+      alt: "Respora home page — Nigeria's AI-powered research and data intelligence platform",
+    },
+    role: "Founder — product, full-stack engineering and operations",
+    services: [
+      "Product design",
+      "Full-stack development",
+      "Payments & rewards",
+      "Platform operations",
+    ],
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "PostgreSQL",
+      "Supabase",
+      "Vercel",
+    ],
+    challenge: [
+      "Research in Nigeria runs on Google Forms. It costs nothing, which is why everyone uses it, and it gives a researcher no way to reach anyone outside their own contacts. Response quality is whatever your WhatsApp groups happen to produce.",
+      "The other side of that trade is worse. A respondent spends their own data allowance answering a stranger's thesis survey and receives nothing for it, so completion rates collapse and the responses that do arrive skew toward whoever felt obliged.",
+      "Neither side can fix this alone. A panel with no studies to answer goes dormant; a study with no panel has nobody to answer it. Building one without the other produces something useless.",
+    ],
+    goal: [
+      "Give researchers access to verified Nigerian respondents they have no personal connection to, with demographic targeting Google Forms cannot offer.",
+      "Make answering a survey worth a respondent's time in a currency that is actually useful to them locally — airtime and data, not a promise of a prize draw.",
+      "Keep both sides moving. The platform has to sequence supply and demand so neither half sits idle waiting for the other.",
+      "Run at a cost that Nigerian academic budgets can absorb, which rules out most of the international panel providers outright.",
+    ],
+    roleDetail: [
+      "This one is mine end to end. I designed the product, built the platform, and run the operations behind it — I am the founder, not a contractor who shipped and left.",
+      "That means the engineering decisions and the business ones are the same decisions: what a coin is worth, how a respondent is verified, when a study closes, what a researcher is allowed to target.",
+      "It is also the project where I learned what a two-sided market actually demands, which is a different discipline from building a site for a client with a known audience.",
+    ],
+    solution: [
+      "Two distinct products in one platform. Respondents get a mobile-first flow: browse available studies, complete them, and redeem earned coins for airtime or data. Researchers get study creation, demographic targeting, live response monitoring and structured reporting.",
+      "The incentive layer is the mechanism, not a marketing gimmick. Coins are earned per completed study and redeemed against airtime and data — a reward with real local value, which is what separates a completion rate that works from one that does not.",
+      "Verification sits underneath both sides. A researcher paying for responses needs to know a respondent is a real, distinct Nigerian person, so the panel is verified rather than open signup.",
+      "Analytics and export turn raw responses into something a researcher can put in front of a supervisor or a board without rebuilding it in a spreadsheet first.",
+    ],
+    features: [
+      {
+        title: "Verified respondent panel",
+        detail:
+          "Real, distinct Nigerian respondents rather than an open form anyone can flood.",
+      },
+      {
+        title: "Airtime and data rewards",
+        detail:
+          "Coins earned per completed study, redeemed for something with genuine local value.",
+      },
+      {
+        title: "Demographic targeting",
+        detail:
+          "Researchers reach a specific audience instead of whoever happens to see the link.",
+      },
+      {
+        title: "Study creation and monitoring",
+        detail:
+          "Build a study, publish it to the panel and watch responses arrive live.",
+      },
+      {
+        title: "Analytics and export",
+        detail:
+          "Structured reporting, so results leave the platform decision-ready.",
+      },
+      {
+        title: "Mobile-first throughout",
+        detail:
+          "Built for the phones respondents actually use, on the connections they actually have.",
+      },
+    ],
+    numbers: [
+      {
+        value: "25K+",
+        label: "Responses collected",
+        note: "Across the panel since launch.",
+      },
+      {
+        value: "500+",
+        label: "Studies run on the platform",
+        note: "By researchers with no prior connection to their respondents.",
+      },
+      {
+        value: "48 hrs",
+        label: "Average study turnaround",
+        note: "From publishing a study to a usable response set.",
+      },
+    ],
+    gallery: [
+      {
+        src: "/work/respora-home.webp",
+        alt: "Respora home page with headline and platform statistics",
+        caption: "The platform's positioning and live numbers",
+        span: "wide",
+      },
+      {
+        src: "/work/respora-two-sides.webp",
+        alt: "Respora section explaining the respondent and researcher sides of the platform",
+        caption: "Two products in one platform — respondent and researcher",
+        span: "wide",
+      },
+      {
+        src: "/work/respora-how-it-works.webp",
+        alt: "Respora how it works section showing the three-step respondent flow",
+        caption: "The respondent flow, from free account to redeemed reward",
+        span: "wide",
+      },
+    ],
+    technicalBuild: [
+      {
+        title: "Supply before demand, deliberately",
+        detail:
+          "A two-sided market cannot launch both sides at once. Building the respondent panel first meant the first researcher to arrive found an audience waiting, rather than an empty platform — the opposite order produces something with nothing to sell.",
+      },
+      {
+        title: "Coins as an internal ledger",
+        detail:
+          "Rewards are held as platform coins and redeemed for airtime or data, which keeps earning decoupled from payout. A respondent's balance is a record inside the system rather than a pending transfer to a mobile network.",
+      },
+      {
+        title: "Verification as the product",
+        detail:
+          "The thing a researcher is actually paying for is confidence that a response came from a real, distinct person in the demographic they asked for. Verification is not a signup hurdle here, it is the value.",
+      },
+      {
+        title: "Mobile-first as a constraint",
+        detail:
+          "Respondents arrive on phones over metered data. Every design decision — payload size, form length, session handling — is bounded by that rather than by what looks good on a laptop.",
+      },
+      {
+        title: "Two interfaces, one data model",
+        detail:
+          "The respondent app and the researcher console read and write the same studies and responses, so a published study appears to the panel without a synchronisation step between two systems.",
+      },
+    ],
+    impact: [
+      {
+        metric: "25K+",
+        label: "Responses collected",
+        detail:
+          "Research data gathered from a verified panel that did not exist before the platform did.",
+      },
+      {
+        label: "Research that reaches beyond a contact list",
+        detail:
+          "Researchers can survey a targeted Nigerian audience they have no personal relationship with — the thing Google Forms structurally cannot do.",
+      },
+      {
+        label: "Respondents paid in something useful",
+        detail:
+          "Time spent answering a survey converts to airtime and data rather than nothing, which is what makes completion rates hold up.",
+      },
+      {
+        label: "A product I run, not just built",
+        detail:
+          "Respora is my own platform. The decisions about pricing, verification and rewards are mine to get right and mine to live with.",
+      },
+    ],
+  },
+
+  {
     slug: "deniyis-interior",
     name: "Deniyi's Interiors & More",
     category: "E-Commerce",
     client: "Deniyi's Interiors & More",
+    timeline: "July 2026",
     liveUrl: "https://deniyisinterior.com.ng",
     summary:
       "A décor and furniture store for an Ibadan brand — twelve product categories, Paystack checkout, a priced styling service and an admin panel the owner runs herself.",
@@ -278,6 +452,7 @@ export const projects: Project[] = [
     name: "Cutiez Couture",
     category: "Fashion E-Commerce",
     client: "Cutiez Couture",
+    timeline: "December 2025 — launched January 2026",
     liveUrl: "https://www.cutiezcouture.com.ng",
     summary:
       "A custom unisex fashion brand selling from Instagram and TikTok — given a landing page that converts social traffic and a shop that takes the order without a DM.",

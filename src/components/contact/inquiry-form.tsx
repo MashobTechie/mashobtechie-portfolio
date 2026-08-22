@@ -2,10 +2,12 @@
 
 import { useId, useState } from "react";
 
-import { ArrowRight, Button } from "@/components/ui/button";
+import { ArrowRight, Button, ButtonLink } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
+import { site } from "@/content/site";
 import {
   budgetRanges,
+  inquiryMailto,
   projectTypes,
   timelines,
   validateInquiry,
@@ -67,10 +69,9 @@ export function InquiryForm() {
   const formId = useId();
   const [values, setValues] = useState(emptyForm);
   const [errors, setErrors] = useState<InquiryErrors>({});
-  const [status, setStatus] = useState<
-    "idle" | "submitting" | "success" | "error"
-  >("idle");
-  const [serverError, setServerError] = useState<string | null>(null);
+  // No network round-trip to wait on: the form hands off to a mail client,
+  // so there is no submitting or error state to model.
+  const [status, setStatus] = useState<"idle" | "success">("idle");
 
   const field = (name: keyof typeof emptyForm) => ({
     id: `${formId}-${name}`,
@@ -93,9 +94,8 @@ export function InquiryForm() {
   const borderFor = (name: keyof InquiryErrors) =>
     errors[name] ? "border-red-400" : "border-line-strong";
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setServerError(null);
 
     const clientErrors = validateInquiry(values);
     if (Object.keys(clientErrors).length > 0) {
@@ -105,34 +105,15 @@ export function InquiryForm() {
       return;
     }
 
-    setStatus("submitting");
-
-    try {
-      const response = await fetch("/api/inquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        if (data.errors) setErrors(data.errors as InquiryErrors);
-        setServerError(
-          data.error ?? "Something went wrong. Please check the form above.",
-        );
-        setStatus("error");
-        return;
-      }
-
-      setValues(emptyForm);
+    // Honeypot: a real person never fills a hidden field. Bail silently so a
+    // bot gets no signal that it was caught.
+    if (values.website) {
       setStatus("success");
-    } catch {
-      setServerError(
-        "Couldn't reach the server. Please try again, or email me directly.",
-      );
-      setStatus("error");
+      return;
     }
+
+    window.location.href = inquiryMailto(values, site.email);
+    setStatus("success");
   }
 
   if (status === "success") {
@@ -141,17 +122,28 @@ export function InquiryForm() {
         <span className="flex size-12 items-center justify-center rounded-full border border-accent-line bg-accent-soft text-accent">
           <Icon name="check" className="size-6" />
         </span>
-        <h2 className="mt-6 text-h3">Thanks — that&apos;s come through.</h2>
-        <p className="mt-3 max-w-sm text-[0.9375rem] leading-relaxed text-muted text-pretty">
-          I read every inquiry personally and usually reply within a couple of
-          working days. If it&apos;s urgent, email me directly.
+        <h2 className="mt-6 text-h3">Your email is ready to send.</h2>
+        <p className="mt-3 max-w-md text-[0.9375rem] leading-relaxed text-muted text-pretty">
+          Your mail app should have opened with everything filled in — press
+          send there and it reaches me. If nothing opened, use one of the
+          routes below instead.
         </p>
+
+        <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+          <ButtonLink href={site.whatsapp.href} target="_blank" rel="noreferrer noopener">
+            Message me on WhatsApp
+          </ButtonLink>
+          <ButtonLink href={`mailto:${site.email}`} variant="secondary">
+            {site.email}
+          </ButtonLink>
+        </div>
+
         <Button
           variant="secondary"
           className="mt-8"
           onClick={() => setStatus("idle")}
         >
-          Send another inquiry
+          Back to the form
         </Button>
       </div>
     );
@@ -319,26 +311,11 @@ export function InquiryForm() {
           I usually reply within a couple of working days.
         </p>
 
-        <Button
-          type="submit"
-          size="lg"
-          disabled={status === "submitting"}
-          className="w-full sm:w-auto"
-        >
-          {status === "submitting" ? "Sending…" : "Send Project Inquiry"}
-          {status === "submitting" ? null : <ArrowRight />}
+        <Button type="submit" size="lg" className="w-full sm:w-auto">
+          Send Project Inquiry
+          <ArrowRight />
         </Button>
       </div>
-
-      <p aria-live="polite" className="sr-only">
-        {status === "submitting" ? "Sending your inquiry" : ""}
-      </p>
-
-      {serverError ? (
-        <p role="alert" className="mt-4 text-sm text-red-600">
-          {serverError}
-        </p>
-      ) : null}
     </form>
   );
 }
