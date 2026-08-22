@@ -11,9 +11,12 @@
  * and buying a domain later is one environment variable rather than a code
  * change someone has to remember.
  *
- *   NEXT_PUBLIC_SITE_URL          set this once there is a custom domain
- *   VERCEL_PROJECT_PRODUCTION_URL supplied by Vercel; the stable production
- *                                 host, not the per-deploy preview URL
+ *   NEXT_PUBLIC_SITE_URL          set this explicitly. Required on Pxxl, which
+ *                                 does not inject a URL variable — without it
+ *                                 production falls through to localhost and
+ *                                 every canonical URL and OG tag is wrong.
+ *   VERCEL_PROJECT_PRODUCTION_URL supplied by Vercel only; the stable
+ *                                 production host, not a per-deploy preview
  *   localhost                     development fallback
  */
 function resolveSiteUrl() {

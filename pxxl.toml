@@ -1,0 +1,20 @@
+# Pxxl build configuration.
+#
+# Pinned in the repo rather than left to dashboard settings so the port the
+# proxy routes to and the port the app binds cannot drift apart. A mismatch
+# there is refused at the TCP level and surfaces as "application route did not
+# become ready before timeout" — a failure with no application logs to explain
+# it, because the app never received a request.
+#
+# `port` must equal the fallback in the start script (package.json), which is
+# what the app binds when Pxxl does not export PORT.
+
+[build]
+language = "javascript"
+framework = "nextjs"
+packageManager = "npm"
+nodeVersion = "20"
+port = 3000
+installCommand = "npm ci"
+buildCommand = "npm run build"
+startCommand = "npm run start"
