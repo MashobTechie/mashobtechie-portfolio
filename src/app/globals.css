@@ -161,6 +161,11 @@
   will-change: transform;
 }
 
+/* Content rides up inside the pinned frame; the panel's overflow clips it. */
+.section-stack[data-stacked="true"] > .section-stack-panel > .section-stack-inner {
+  will-change: transform;
+}
+
 .section-stack-scrim {
   position: absolute;
   inset: 0;
@@ -186,5 +191,9 @@
 
   .section-stack-scrim {
     display: none;
+  }
+
+  .section-stack-inner {
+    transform: none !important;
   }
 }
