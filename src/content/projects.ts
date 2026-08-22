@@ -177,14 +177,15 @@ export const projects: Project[] = [
     name: "Deniyi's Interiors & More",
     category: "E-Commerce",
     client: "Deniyi's Interiors & More",
+    liveUrl: "https://deniyisinterior.com.ng",
     summary:
-      "A full storefront for an interior décor brand — browsing, checkout, Paystack payments and an admin back office the owner runs herself.",
+      "A décor and furniture store for an Ibadan brand — twelve product categories, Paystack checkout, a priced styling service and an admin panel the owner runs herself.",
     intro:
-      "An Ibadan-based interior décor brand was selling through DMs and word of mouth. It now runs a real storefront with working payments, an owner-operated catalogue and a Google presence — and processed over ₦1,000,000 in its first month live.",
+      "Deniyi's Interiors & More sells quality home décor at accessible prices in Ibadan, delivering citywide and nationwide. It went from taking orders in DMs to a full storefront with working payments, a services arm and a Google presence — and processed over ₦1,000,000 in its first month live.",
     featured: true,
-    liveUrl: undefined,
     cover: {
-      alt: "Deniyi's Interiors & More storefront shown on a tablet",
+      src: "/work/deniyis-home.webp",
+      alt: "Deniyi's Interiors & More storefront home page",
     },
     role: "End-to-end design, full-stack development, deployment and training",
     services: [
@@ -202,60 +203,60 @@ export const projects: Project[] = [
       "Prisma",
       "PostgreSQL",
       "Paystack",
-      "Cloudinary",
       "Vercel",
     ],
     challenge: [
-      "The business had no way to sell online. Orders arrived through DMs and word of mouth, every price and stock question was answered by hand, and there was no record of an order beyond a chat thread.",
-      "It was also effectively invisible to search. A customer in Ibadan looking for interior décor had no way to find the brand on Google, so the only demand was demand that already knew the name.",
-      "Bespoke décor does not fit a simple product model either. Pieces vary by material, finish and dimension, and quoting the wrong combination is an expensive mistake for both sides.",
+      "The business had no way to sell online. Orders arrived through DMs, every price and stock question was answered by hand, and there was no record of an order beyond a chat thread.",
+      "It was also invisible to search. Someone in Ibadan looking for a centre rug or a wall mirror had no way to find the brand on Google, so the only demand was demand that already knew the name.",
+      "And there were really two businesses to serve. Stock — rugs, mirrors, chandeliers, kitchen electronics — sells from a cart. Interior styling sells from a conversation, at a very different price point. One site had to do both without either feeling bolted on.",
     ],
     goal: [
-      "Sell online properly: let a customer browse the real catalogue, choose the exact piece they want, and pay — without a conversation having to happen first.",
-      "Get found. The brand needed to appear when someone nearby searched for what it sells, rather than relying entirely on existing word of mouth.",
-      "Run without a developer. The owner had to be able to add products, change prices and check orders herself, or the site would become a recurring cost instead of an asset.",
+      "Sell the stock online properly: let a customer browse the real catalogue, pay, and track the order — without a conversation having to happen first.",
+      "Get found. The brand needed to appear when someone nearby searched for what it sells, rather than relying entirely on word of mouth.",
+      "Give the styling work a credible route in. Published prices qualify an enquiry before it arrives, so the higher-value conversations start further along.",
+      "Run without a developer. The owner had to add products, change prices and check orders herself, or the site would be a recurring cost instead of an asset.",
     ],
     roleDetail: [
-      "Sole developer and designer on the project, end to end. I designed the interface around the brand's existing white, gold and black identity, then built the storefront, the checkout and the admin panel.",
-      "Beyond the build: domain and SSL configuration, deployment to Vercel, technical SEO, and setting up Google Business Profile and Search Console so the brand could actually be found locally.",
-      "I also ran the handover training — uploading and editing products, managing categories and working through orders — so day-to-day operation sits with the owner rather than with me.",
+      "Sole designer and developer, end to end. I designed the interface around the brand's white, gold and black identity, then built the storefront, checkout, services pages, project gallery and admin panel.",
+      "Beyond the build: domain and SSL configuration, deployment to Vercel, technical SEO, and setting up Google Business Profile and Search Console so the brand could be found locally.",
+      "I also ran the handover training — uploading and editing products, managing categories, working through orders — so daily operation sits with the owner rather than with me.",
     ],
     solution: [
-      "A storefront built around a real variant model, so every purchasable combination of material, finish and dimension carries its own price, imagery and stock position. Customers see accurate availability before they commit, not after.",
-      "Checkout runs on Paystack, covering the payment methods customers in the market actually use, with order state tracked end to end so both sides always know where an order stands.",
-      "A complete admin area covers products, categories, media and orders. The presentation stays editorial — white, gold and black, generous imagery — because bespoke pieces do not sell from a commodity grid.",
-      "WhatsApp chat, Google Maps and the contact form cover the enquiries that still want a conversation, which for high-consideration décor purchases is a real share of them.",
+      "A storefront spanning twelve categories, from Turkish centre rugs and mirrors to chandeliers, figurines and kitchen electronics. Search, category filtering, sale pricing, customer accounts and order tracking all ship as part of it.",
+      "Checkout runs on Paystack in Naira, covering the payment methods customers in the market actually use, with order state tracked end to end so both sides know where an order stands.",
+      "The styling service is published with real starting prices — consultation, spatial planning and sourcing, then on-site styling and installation — so a prospect self-qualifies before making contact instead of opening with \"how much?\".",
+      "A gallery of completed residential, commercial and studio projects does the persuading for that service, and an admin area covers products, categories, media and orders for the owner.",
     ],
     features: [
       {
-        title: "Full variant catalogue",
+        title: "Twelve-category catalogue",
         detail:
-          "Material, finish and dimension combinations with independent pricing, imagery and stock.",
+          "Rugs, mirrors, furniture, chandeliers, wall art, figurines, artificial plants and kitchen electronics, with search, filtering and sale pricing.",
       },
       {
-        title: "Checkout and payments",
+        title: "Paystack checkout",
         detail:
-          "Paystack integration covering the payment methods customers in the market actually use.",
+          "Payment in Naira through the methods customers in the market actually use.",
       },
       {
-        title: "Order management",
+        title: "Accounts and order tracking",
         detail:
-          "End-to-end order state, visible to the business and communicated to the customer.",
+          "Customers can create an account and follow an order, instead of asking for a status update in DMs.",
+      },
+      {
+        title: "Services with published pricing",
+        detail:
+          "Consultation, spatial planning and installation listed with starting prices, so enquiries arrive already qualified.",
+      },
+      {
+        title: "Completed-project gallery",
+        detail:
+          "Residential, commercial and studio work, filterable — the proof behind the styling service.",
       },
       {
         title: "Self-serve admin",
         detail:
           "Products, categories, media and orders managed by the owner without developer involvement.",
-      },
-      {
-        title: "Found on Google",
-        detail:
-          "Technical SEO plus Google Business Profile and Search Console, set up from a standing start.",
-      },
-      {
-        title: "Built for mobile",
-        detail:
-          "The full browse-to-checkout path designed for phones, where most of the traffic arrives.",
       },
     ],
     numbers: [
@@ -272,56 +273,54 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        alt: "Deniyi's Interiors & More home page",
-        caption: "Editorial storefront",
+        src: "/work/deniyis-home.webp",
+        alt: "Deniyi's Interiors & More home page with hero carousel",
+        caption: "Storefront home page",
         span: "wide",
       },
       {
-        alt: "Deniyi's Interiors & More product detail page with variants",
-        caption: "Product detail with variant selection",
-        span: "half",
+        src: "/work/deniyis-collections.webp",
+        alt: "Deniyi's Interiors & More catalogue page showing category filters and product pricing",
+        caption: "Catalogue with category filtering and sale pricing",
+        span: "wide",
       },
       {
-        alt: "Deniyi's Interiors & More checkout flow",
-        caption: "Checkout and Paystack payment",
-        span: "half",
-      },
-      {
-        alt: "Deniyi's Interiors & More admin dashboard",
-        caption: "Admin back office",
+        src: "/work/deniyis-gallery.webp",
+        alt: "Deniyi's Interiors & More completed-project gallery",
+        caption: "Completed-project gallery behind the styling service",
         span: "wide",
       },
     ],
     technicalBuild: [
       {
-        title: "Variant-authoritative catalogue",
+        title: "Two sales models, one system",
         detail:
-          "Price and stock live on the variant, not the product. A bespoke piece in a different finish is a different purchasable thing, and the data model says so — which is what keeps quoted prices correct.",
+          "Stock sells through a cart and checkout; styling sells through a priced enquiry. Both run off the same catalogue, admin and design language rather than as two disconnected sites.",
       },
       {
-        title: "Money as integers",
+        title: "Prerendered catalogue",
         detail:
-          "Amounts are stored in kobo as integers rather than floats, so no rounding error can creep into a total between cart, checkout and Paystack.",
+          "Collection and product pages are rendered ahead of time and served from Vercel's edge, so the first view is fast on the mobile connections most of the traffic arrives on.",
       },
       {
-        title: "Webhook as source of truth",
+        title: "Optimised product imagery",
         detail:
-          "The Paystack webhook — not the browser redirect — decides whether an order is paid. A customer closing the tab after payment cannot leave an order in the wrong state.",
+          "A décor catalogue is almost entirely photographs. Images are resized and served in modern formats per device rather than shipping full-size originals.",
       },
       {
-        title: "Server-rendered by default",
+        title: "Crawl rules that match the site",
         detail:
-          "Server Components and Server Actions handle reads and writes, keeping the client bundle small on the mobile connections most of the traffic arrives on.",
+          "A generated sitemap covers the pages worth indexing, while robots.txt keeps admin, accounts, checkout, payment, tracking and API routes out of search results entirely.",
       },
       {
-        title: "Media off the critical path",
+        title: "Installable on a phone",
         detail:
-          "Product imagery is served through Cloudinary, so a catalogue full of large photographs still loads quickly.",
+          "A web manifest lets returning customers install the store to their home screen and open it like an app.",
       },
       {
-        title: "SEO built in, not bolted on",
+        title: "Owner-facing admin",
         detail:
-          "Clean URLs, per-page metadata, generated sitemap and robots.txt, plus Google Search Console and Business Profile — the groundwork behind the first month's search traffic.",
+          "A role-gated back office for products, categories, media and orders — the reason the site does not generate developer invoices for routine changes.",
       },
     ],
     impact: [
@@ -338,14 +337,19 @@ export const projects: Project[] = [
           "Customers arriving from Google search, where the brand previously had no listing at all.",
       },
       {
+        label: "From DMs to a system of record",
+        detail:
+          "Selling moved off informal chat threads onto a system that records every order end to end and lets customers track their own.",
+      },
+      {
+        label: "A route in for higher-value work",
+        detail:
+          "Styling services are presented with prices and a portfolio, so the business can sell engagements worth many times an average basket.",
+      },
+      {
         label: "Owner-operated catalogue",
         detail:
           "Products, pricing and stock are managed in-house after handover training — no developer in the loop for day-to-day changes.",
-      },
-      {
-        label: "From DMs to a real storefront",
-        detail:
-          "Selling moved off informal chat threads and onto a system that records every order end to end.",
       },
     ],
   },
