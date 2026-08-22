@@ -106,13 +106,13 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </dl>
       </Container>
 
-      {/* ---------- Challenge & solution ---------- */}
+      {/* ---------- 01 Problem / 02 Goal ---------- */}
       <Section className="pt-16 sm:pt-20 lg:pt-24">
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <Reveal>
-              <Eyebrow>The Challenge</Eyebrow>
-              <h2 className="mt-4 text-h2">What needed solving</h2>
+              <Eyebrow>01 — The Problem</Eyebrow>
+              <h2 className="mt-4 text-h2">What was broken</h2>
               <div className="mt-6 flex flex-col gap-4 text-[1.0625rem] leading-relaxed text-muted text-pretty">
                 {project.challenge.map((paragraph) => (
                   <p key={paragraph.slice(0, 40)}>{paragraph}</p>
@@ -120,28 +120,56 @@ export default async function CaseStudyPage({ params }: PageProps) {
               </div>
             </Reveal>
 
-            <Reveal delay={100}>
-              <Eyebrow>The Solution</Eyebrow>
-              <h2 className="mt-4 text-h2">What we built</h2>
-              <div className="mt-6 flex flex-col gap-4 text-[1.0625rem] leading-relaxed text-muted text-pretty">
-                {project.solution.map((paragraph) => (
-                  <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-                ))}
-              </div>
-            </Reveal>
+            {project.goal ? (
+              <Reveal delay={100}>
+                <Eyebrow>02 — The Goal</Eyebrow>
+                <h2 className="mt-4 text-h2">What the business needed</h2>
+                <div className="mt-6 flex flex-col gap-4 text-[1.0625rem] leading-relaxed text-muted text-pretty">
+                  {project.goal.map((paragraph) => (
+                    <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                  ))}
+                </div>
+              </Reveal>
+            ) : null}
           </div>
         </Container>
       </Section>
 
-      {/* ---------- Key features ---------- */}
-      <Section className="border-y border-line bg-surface">
-        <Container>
-          <Eyebrow>Key Features</Eyebrow>
-          <h2 className="mt-4 max-w-2xl text-h2 text-balance">
-            What it actually does
-          </h2>
+      {/* ---------- 03 My Role ---------- */}
+      {project.roleDetail ? (
+        <Section className="border-y border-line bg-surface">
+          <Container>
+            <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+              <div className="lg:col-span-5">
+                <Eyebrow>03 — My Role</Eyebrow>
+                <h2 className="mt-4 text-h2 text-balance">
+                  What I actually did
+                </h2>
+              </div>
+              <div className="flex flex-col gap-4 text-[1.0625rem] leading-relaxed text-muted text-pretty lg:col-span-7">
+                {project.roleDetail.map((paragraph) => (
+                  <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </Container>
+        </Section>
+      ) : null}
 
-          <ul className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
+      {/* ---------- 04 The Solution ---------- */}
+      <Section>
+        <Container>
+          <div className="max-w-3xl">
+            <Eyebrow>04 — The Solution</Eyebrow>
+            <h2 className="mt-4 text-h2 text-balance">What I built</h2>
+            <div className="mt-6 flex flex-col gap-4 text-[1.0625rem] leading-relaxed text-muted text-pretty">
+              {project.solution.map((paragraph) => (
+                <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+
+          <ul className="mt-14 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
             {project.features.map((feature, index) => (
               <Reveal
                 as="li"
@@ -161,13 +189,50 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </Container>
       </Section>
 
-      {/* ---------- Interface gallery ---------- */}
+      {/* ---------- 05 The Numbers ----------
+          Renders only where the client has reported real figures. Projects
+          with nothing measured skip the section rather than pad it. */}
+      {project.numbers && project.numbers.length > 0 ? (
+        <Section className="border-y border-line bg-surface">
+          <Container>
+            <div className="max-w-2xl">
+              <Eyebrow>05 — The Numbers</Eyebrow>
+              <h2 className="mt-4 text-h2 text-balance">What changed</h2>
+            </div>
+
+            <dl className="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:mt-14">
+              {project.numbers.map((metric, index) => (
+                <Reveal
+                  key={metric.label}
+                  delay={index * 80}
+                  className="bg-surface p-8 sm:p-10"
+                >
+                  <dt className="sr-only">{metric.label}</dt>
+                  <dd>
+                    <p className="text-display text-accent">{metric.value}</p>
+                    <p className="mt-3 text-[1.0625rem] font-semibold text-ink">
+                      {metric.label}
+                    </p>
+                    {metric.note ? (
+                      <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted text-pretty">
+                        {metric.note}
+                      </p>
+                    ) : null}
+                  </dd>
+                </Reveal>
+              ))}
+            </dl>
+          </Container>
+        </Section>
+      ) : null}
+
+      {/* ---------- 06 The Product ---------- */}
       {project.gallery.length > 0 ? (
         <Section>
           <Container>
-            <Eyebrow>Interface</Eyebrow>
+            <Eyebrow>06 — The Product</Eyebrow>
             <h2 className="mt-4 max-w-2xl text-h2 text-balance">
-              A look at the product
+              A look at what shipped
             </h2>
 
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:gap-6">
@@ -206,19 +271,60 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </Section>
       ) : null}
 
-      {/* ---------- Outcome ---------- */}
-      <Section className="border-t border-line bg-surface">
+      {/* ---------- 07 The Technical Build ---------- */}
+      <Section className="border-y border-line bg-surface">
+        <Container>
+          <div className="max-w-2xl">
+            <Eyebrow>07 — The Technical Build</Eyebrow>
+            <h2 className="mt-4 text-h2 text-balance">
+              How it works underneath
+            </h2>
+          </div>
+
+          {project.technicalBuild ? (
+            <ul className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:mt-14">
+              {project.technicalBuild.map((item, index) => (
+                <Reveal
+                  as="li"
+                  key={item.title}
+                  delay={index * 60}
+                  className="border-t border-line pt-6"
+                >
+                  <h3 className="text-[1.0625rem] font-semibold text-ink">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-muted text-pretty">
+                    {item.detail}
+                  </p>
+                </Reveal>
+              ))}
+            </ul>
+          ) : null}
+
+          <div className="mt-12 flex flex-col gap-5 border-t border-line pt-8 sm:flex-row sm:items-baseline sm:justify-between sm:gap-16">
+            <p className="text-eyebrow uppercase text-muted-soft">Built with</p>
+            <ul className="flex flex-wrap gap-2 sm:justify-end">
+              {project.tech.map((item) => (
+                <li key={item}>
+                  <Tag className="px-3 py-1.5 text-[0.8125rem] text-ink">
+                    {item}
+                  </Tag>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Container>
+      </Section>
+
+      {/* ---------- 08 The Outcome ---------- */}
+      <Section>
         <Container>
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow>Outcome</Eyebrow>
+              <Eyebrow>08 — The Outcome</Eyebrow>
               <h2 className="mt-4 text-h2 text-balance">
-                What changed for the business
+                What the business got
               </h2>
-              <p className="mt-6 text-lead text-muted text-pretty">
-                The measures that matter here are qualitative — what the team
-                stopped doing, and what became possible.
-              </p>
             </div>
 
             <ul className="flex flex-col gap-px overflow-hidden rounded-card border border-line bg-line lg:col-span-7">
@@ -245,31 +351,24 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </Container>
       </Section>
 
-      {/* ---------- Technology ---------- */}
-      <Section className="border-t border-line">
-        <Container>
-          <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between sm:gap-16">
-            <div className="max-w-sm">
-              <Eyebrow>Technology</Eyebrow>
-              <h2 className="mt-4 text-h3">Built with</h2>
-              <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted text-pretty">
-                Chosen to fit the problem and the budget — not to pad a stack
-                list.
-              </p>
+      {/* ---------- 09 Lessons ---------- */}
+      {project.lessons && project.lessons.length > 0 ? (
+        <Section className="border-t border-line bg-surface">
+          <Container>
+            <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+              <div className="lg:col-span-5">
+                <Eyebrow>09 — Lessons</Eyebrow>
+                <h2 className="mt-4 text-h2 text-balance">What I took away</h2>
+              </div>
+              <div className="flex flex-col gap-4 text-[1.0625rem] leading-relaxed text-muted text-pretty lg:col-span-7">
+                {project.lessons.map((paragraph) => (
+                  <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                ))}
+              </div>
             </div>
-
-            <ul className="flex flex-wrap gap-2 sm:justify-end">
-              {project.tech.map((item) => (
-                <li key={item}>
-                  <Tag className="px-3 py-1.5 text-[0.8125rem] text-ink">
-                    {item}
-                  </Tag>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Container>
-      </Section>
+          </Container>
+        </Section>
+      ) : null}
 
       {/* ---------- Prev / next ---------- */}
       {previous && next ? (

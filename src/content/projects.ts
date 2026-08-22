@@ -6,8 +6,10 @@
  * instead of a broken image. To light one up, drop the file into
  * `public/work/` and add its path — nothing else needs to change.
  *
- * OUTCOMES: `impact` entries are qualitative on purpose. Add a `metric`
- * only when there is a real, verified number to stand behind.
+ * OUTCOMES: `impact` entries are qualitative by default. Add a `metric`,
+ * or an entry under `numbers`, only when there is a real figure the client
+ * has reported. Unmeasured work leaves `numbers` undefined and the section
+ * is skipped rather than padded.
  */
 
 export type ProjectImage = {
@@ -27,6 +29,22 @@ export type ImpactPoint = {
   metric?: string;
 };
 
+/**
+ * A hard number for "05 — The Numbers".
+ *
+ * Only ever populated with a figure the client has actually reported. A
+ * project with nothing measured leaves `numbers` undefined and the section
+ * does not render — an absent section reads honestly, an invented one does
+ * not survive first contact with a prospect who asks about it.
+ */
+export type Metric = {
+  /** The figure itself, pre-formatted, e.g. "₦1M+". */
+  value: string;
+  label: string;
+  /** Qualifier — window, source, or what the baseline was. */
+  note?: string;
+};
+
 export type Project = {
   slug: string;
   name: string;
@@ -43,11 +61,25 @@ export type Project = {
   client?: string;
   services: string[];
   tech: string[];
+  /** 01 — The Problem. What was broken or missing. */
   challenge: string[];
+  /** 02 — The Goal. What the business needed to happen. */
+  goal?: string[];
+  /** 03 — My Role. What was actually done, beyond the one-line `role`. */
+  roleDetail?: string[];
+  /** 04 — The Solution. */
   solution: string[];
   features: { title: string; detail: string }[];
+  /** 05 — The Numbers. Verified figures only; omit for unmeasured work. */
+  numbers?: Metric[];
+  /** 06 — The Product. */
   gallery: ProjectImage[];
+  /** 07 — The Technical Build. Architecture, integrations, decisions. */
+  technicalBuild?: { title: string; detail: string }[];
+  /** 08 — The Outcome. */
   impact: ImpactPoint[];
+  /** 09 — Lessons. */
+  lessons?: string[];
   /** Live URL, when the project is public and shareable. */
   liveUrl?: string;
 };
@@ -142,32 +174,57 @@ export const projects: Project[] = [
 
   {
     slug: "deniyis-interior",
-    name: "Deniyi's Interiors",
+    name: "Deniyi's Interiors & More",
     category: "E-Commerce",
+    client: "Deniyi's Interiors & More",
     summary:
-      "A full storefront for a bespoke interior décor business — browsing, checkout, payments and a complete admin back office.",
+      "A full storefront for an interior décor brand — browsing, checkout, Paystack payments and an admin back office the owner runs herself.",
     intro:
-      "An Ibadan-based interior décor brand selling bespoke furniture needed to sell online properly: real product variants, working payments, and a back office the owner could run without calling a developer.",
+      "An Ibadan-based interior décor brand was selling through DMs and word of mouth. It now runs a real storefront with working payments, an owner-operated catalogue and a Google presence — and processed over ₦1,000,000 in its first month live.",
     featured: true,
+    liveUrl: undefined,
     cover: {
-      alt: "Deniyi's Interiors storefront shown on a tablet",
+      alt: "Deniyi's Interiors & More storefront shown on a tablet",
     },
-    role: "End-to-end product design and full-stack development",
+    role: "End-to-end design, full-stack development, deployment and training",
     services: [
       "E-commerce design",
       "Full-stack development",
       "Payment integration",
       "Admin tooling",
+      "SEO & Google Business",
+      "Deployment & training",
     ],
-    tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Paystack", "Auth.js"],
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Prisma",
+      "PostgreSQL",
+      "Paystack",
+      "Cloudinary",
+      "Vercel",
+    ],
     challenge: [
-      "Bespoke furniture does not fit a simple product model. Pieces vary by material, finish, dimension and lead time, and the wrong combination is an expensive mistake for both sides.",
-      "The business also needed to run itself. A storefront that required developer involvement to add a product or check an order would have been a liability rather than an asset.",
+      "The business had no way to sell online. Orders arrived through DMs and word of mouth, every price and stock question was answered by hand, and there was no record of an order beyond a chat thread.",
+      "It was also effectively invisible to search. A customer in Ibadan looking for interior décor had no way to find the brand on Google, so the only demand was demand that already knew the name.",
+      "Bespoke décor does not fit a simple product model either. Pieces vary by material, finish and dimension, and quoting the wrong combination is an expensive mistake for both sides.",
+    ],
+    goal: [
+      "Sell online properly: let a customer browse the real catalogue, choose the exact piece they want, and pay — without a conversation having to happen first.",
+      "Get found. The brand needed to appear when someone nearby searched for what it sells, rather than relying entirely on existing word of mouth.",
+      "Run without a developer. The owner had to be able to add products, change prices and check orders herself, or the site would become a recurring cost instead of an asset.",
+    ],
+    roleDetail: [
+      "Sole developer and designer on the project, end to end. I designed the interface around the brand's existing white, gold and black identity, then built the storefront, the checkout and the admin panel.",
+      "Beyond the build: domain and SSL configuration, deployment to Vercel, technical SEO, and setting up Google Business Profile and Search Console so the brand could actually be found locally.",
+      "I also ran the handover training — uploading and editing products, managing categories and working through orders — so day-to-day operation sits with the owner rather than with me.",
     ],
     solution: [
-      "A storefront built around a real variant system, so every purchasable combination carries its own pricing, imagery and stock position. Customers see accurate availability before they commit, not after.",
-      "Checkout integrates Paystack for local payment methods, with order state tracked end to end so both the customer and the business always know where an order stands.",
-      "A complete admin area covers products, variants, media, orders and customers — the owner manages the catalogue directly, and the editorial product presentation holds up as the range grows.",
+      "A storefront built around a real variant model, so every purchasable combination of material, finish and dimension carries its own price, imagery and stock position. Customers see accurate availability before they commit, not after.",
+      "Checkout runs on Paystack, covering the payment methods customers in the market actually use, with order state tracked end to end so both sides always know where an order stands.",
+      "A complete admin area covers products, categories, media and orders. The presentation stays editorial — white, gold and black, generous imagery — because bespoke pieces do not sell from a commodity grid.",
+      "WhatsApp chat, Google Maps and the contact form cover the enquiries that still want a conversation, which for high-consideration décor purchases is a real share of them.",
     ],
     features: [
       {
@@ -188,12 +245,12 @@ export const projects: Project[] = [
       {
         title: "Self-serve admin",
         detail:
-          "Products, media, orders and customers managed by the owner without developer involvement.",
+          "Products, categories, media and orders managed by the owner without developer involvement.",
       },
       {
-        title: "Editorial product pages",
+        title: "Found on Google",
         detail:
-          "Premium presentation that suits bespoke pieces rather than a generic commodity grid.",
+          "Technical SEO plus Google Business Profile and Search Console, set up from a standing start.",
       },
       {
         title: "Built for mobile",
@@ -201,43 +258,94 @@ export const projects: Project[] = [
           "The full browse-to-checkout path designed for phones, where most of the traffic arrives.",
       },
     ],
+    numbers: [
+      {
+        value: "₦1M+",
+        label: "Processed through the store",
+        note: "In the first month after launch.",
+      },
+      {
+        value: "63",
+        label: "Visits from Google search",
+        note: "First month, from no prior web presence or search listing.",
+      },
+    ],
     gallery: [
       {
-        alt: "Deniyi's Interiors home page",
+        alt: "Deniyi's Interiors & More home page",
         caption: "Editorial storefront",
         span: "wide",
       },
       {
-        alt: "Deniyi's Interiors product detail page with variants",
+        alt: "Deniyi's Interiors & More product detail page with variants",
         caption: "Product detail with variant selection",
         span: "half",
       },
       {
-        alt: "Deniyi's Interiors checkout flow",
-        caption: "Checkout and payment",
+        alt: "Deniyi's Interiors & More checkout flow",
+        caption: "Checkout and Paystack payment",
         span: "half",
       },
       {
-        alt: "Deniyi's Interiors admin dashboard",
+        alt: "Deniyi's Interiors & More admin dashboard",
         caption: "Admin back office",
         span: "wide",
       },
     ],
+    technicalBuild: [
+      {
+        title: "Variant-authoritative catalogue",
+        detail:
+          "Price and stock live on the variant, not the product. A bespoke piece in a different finish is a different purchasable thing, and the data model says so — which is what keeps quoted prices correct.",
+      },
+      {
+        title: "Money as integers",
+        detail:
+          "Amounts are stored in kobo as integers rather than floats, so no rounding error can creep into a total between cart, checkout and Paystack.",
+      },
+      {
+        title: "Webhook as source of truth",
+        detail:
+          "The Paystack webhook — not the browser redirect — decides whether an order is paid. A customer closing the tab after payment cannot leave an order in the wrong state.",
+      },
+      {
+        title: "Server-rendered by default",
+        detail:
+          "Server Components and Server Actions handle reads and writes, keeping the client bundle small on the mobile connections most of the traffic arrives on.",
+      },
+      {
+        title: "Media off the critical path",
+        detail:
+          "Product imagery is served through Cloudinary, so a catalogue full of large photographs still loads quickly.",
+      },
+      {
+        title: "SEO built in, not bolted on",
+        detail:
+          "Clean URLs, per-page metadata, generated sitemap and robots.txt, plus Google Search Console and Business Profile — the groundwork behind the first month's search traffic.",
+      },
+    ],
     impact: [
       {
-        label: "Selling online, properly",
+        metric: "₦1M+",
+        label: "Revenue processed in month one",
         detail:
-          "The business moved from informal enquiry-led selling to a real storefront with working checkout.",
+          "The store moved real money in its first month live, through a checkout that had not existed before.",
+      },
+      {
+        metric: "63",
+        label: "Organic visits in month one",
+        detail:
+          "Customers arriving from Google search, where the brand previously had no listing at all.",
       },
       {
         label: "Owner-operated catalogue",
         detail:
-          "Products, pricing and stock are managed in-house — no developer in the loop for day-to-day changes.",
+          "Products, pricing and stock are managed in-house after handover training — no developer in the loop for day-to-day changes.",
       },
       {
-        label: "Presentation that matches the product",
+        label: "From DMs to a real storefront",
         detail:
-          "Bespoke pieces are presented editorially, consistent with how the brand sells in person.",
+          "Selling moved off informal chat threads and onto a system that records every order end to end.",
       },
     ],
   },

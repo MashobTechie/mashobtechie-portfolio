@@ -13,12 +13,12 @@ export const site = {
     "Full-stack software engineer and SaaS builder. I help businesses launch, grow and sell online with modern websites and web applications built for real customers.",
   url: "https://mashobtechie.com",
 
-  // TODO: replace with real contact details before launch.
-  email: "hello@mashobtechie.com",
+  // TODO: social handles below are still placeholders — replace before launch.
+  email: "mashobtechie@gmail.com",
   location: "Available worldwide — remote",
 
   social: [
-    { label: "GitHub", href: "https://github.com/mashobtechie" },
+    { label: "GitHub", href: "https://github.com/MashobTechie" },
     { label: "LinkedIn", href: "https://linkedin.com/in/mashobtechie" },
     { label: "Instagram", href: "https://instagram.com/mashobtechie" },
     { label: "TikTok", href: "https://tiktok.com/@mashobtechie" },
