@@ -6,6 +6,17 @@ import { Children, useEffect, useRef } from "react";
 const LAYER_STEP = 12;
 
 /**
+ * Scroll distance, as a fraction of the frame, that a panel holds fully
+ * visible and uncovered once its content has finished scrubbing.
+ *
+ * Without this the last of a panel's content is revealed at the exact moment
+ * the next panel starts covering it, so the bottom of a long section can never
+ * actually be read. The panel is given this much extra height beyond its
+ * content to buy the dwell.
+ */
+const DWELL_RATIO = 0.5;
+
+/**
  * Stacked-scroll wrapper: each section pins at its own place in a deck and the
  * next scrolls up over it, the covered panel receding as it goes.
  *
@@ -19,9 +30,9 @@ const LAYER_STEP = 12;
  * way it would if nothing were pinned — same direction, same rate, no hijack —
  * while the frame's edge and curve stay put in the deck.
  *
- * The arithmetic works out exactly: scrubbing finishes at the scroll position
- * where the next panel's top edge reaches the bottom of the viewport, so the
- * last of a panel's content is read precisely as the next begins to cover it.
+ * Each panel then claims a little more scroll than its content needs, so that
+ * once the content has finished scrubbing the panel holds — pinned, complete
+ * and uncovered — before the next one starts over it. See DWELL_RATIO.
  *
  * Under prefers-reduced-motion none of this runs. Nothing here is load-bearing:
  * with JavaScript off the panels are plain blocks in document order.
@@ -45,7 +56,6 @@ export function SectionStack({ children }: { children: React.ReactNode }) {
     const deckTops = new Array<number>(count).fill(0);
     const docTops = new Array<number>(count).fill(0);
     const maxScrubs = new Array<number>(count).fill(0);
-    const scrubs = new Array<number>(count).fill(0);
 
     let frame = 0;
     let enabled = false;
@@ -58,7 +68,7 @@ export function SectionStack({ children }: { children: React.ReactNode }) {
           panel.style.top = "";
           panel.style.removeProperty("--stack-progress");
           contents[index].style.transform = "";
-          scrubs[index] = 0;
+          panel.style.height = "";
         });
         return;
       }
@@ -69,26 +79,42 @@ export function SectionStack({ children }: { children: React.ReactNode }) {
       const viewport = window.innerHeight;
       const nav = document.querySelector("header");
       const navHeight = nav ? nav.offsetHeight : 0;
-      const scrollY = window.scrollY;
+
+      // The stack root is never pinned, so its position is a reliable origin.
+      // Panel positions are accumulated from it rather than read back from
+      // getBoundingClientRect, which reports where a pinned panel is drawn
+      // rather than where it sits in the document.
+      let offset = root.getBoundingClientRect().top + window.scrollY;
 
       panels.forEach((panel, index) => {
         // Each panel pins a little lower than the one before it, so every
         // earlier edge stays visible above the current panel.
         const deckTop = navHeight + index * LAYER_STEP;
+        const frameHeight = viewport - deckTop;
+        const contentHeight = contents[index].offsetHeight;
+
         deckTops[index] = deckTop;
         panel.style.top = `${deckTop}px`;
 
-        // Document position of the panel. It may already be pinned when this
-        // runs, so back the applied scrub out rather than compounding it.
-        const rect = panel.getBoundingClientRect();
-        const pinned = Math.abs(rect.top - deckTop) < 0.5;
-        docTops[index] = pinned
-          ? scrollY + deckTop - scrubs[index]
-          : rect.top + scrollY;
-
         // How far this panel's content must travel to be read in its frame.
-        const frameHeight = viewport - deckTop;
-        maxScrubs[index] = Math.max(0, contents[index].offsetHeight - frameHeight);
+        maxScrubs[index] = Math.max(0, contentHeight - frameHeight);
+
+        // Panels claim their frame plus a dwell beyond whatever their content
+        // needs. The dwell is the stretch of scroll where the panel sits
+        // pinned, fully scrubbed and not yet covered — without it the foot of
+        // a long section is revealed and hidden in the same instant.
+        //
+        // The last panel is the exception: nothing covers it, so buying it
+        // dwell would only add dead scroll between it and the footer.
+        const isLast = index === count - 1;
+        const height = isLast
+          ? contentHeight
+          : Math.max(contentHeight, frameHeight) +
+            Math.round(frameHeight * DWELL_RATIO);
+        panel.style.height = `${height}px`;
+
+        docTops[index] = offset;
+        offset += height;
       });
     };
 
@@ -101,7 +127,6 @@ export function SectionStack({ children }: { children: React.ReactNode }) {
         // and stops once its last line has been read.
         const overshoot = scrollY + deckTops[index] - docTops[index];
         const scrub = Math.min(Math.max(overshoot, 0), maxScrubs[index]);
-        scrubs[index] = scrub;
         contents[index].style.transform = `translate3d(0, ${-scrub}px, 0)`;
 
         const next = panels[index + 1];
