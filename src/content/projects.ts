@@ -448,6 +448,178 @@ export const projects: Project[] = [
   },
 
   {
+    slug: "hairbybash",
+    name: "HairbyBash",
+    category: "Booking Platform",
+    client: "HairbyBash, Calgary",
+    timeline: "February to August 2026",
+    liveUrl: "https://www.hairbybash.ca",
+    summary:
+      "A booking platform for a Calgary braiding and locs studio. Clients pick a service, take a real slot and pay a deposit, and the owner runs the whole business from an admin panel.",
+    intro:
+      "HairbyBash is a private braiding and natural hair studio in Calgary. Appointments are the only thing the business sells, and every one of them used to start as a direct message. The studio now runs on a booking system that takes the slot, charges a deposit through Stripe, emails everyone involved and reminds the client a day before, with an admin panel behind it that Bash operates herself.",
+    featured: true,
+    cover: {
+      src: "/work/hairbybash-home.webp",
+      alt: "HairbyBash home page, a Calgary luxury braiding and locs studio",
+    },
+    role: "Lead developer, full-stack",
+    services: [
+      "Product and UX design",
+      "Full-stack development",
+      "Payments integration",
+      "Admin tooling",
+      "Deployment and handover",
+    ],
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "PostgreSQL",
+      "Stripe",
+      "Resend",
+      "GitHub Actions",
+      "Vercel",
+    ],
+    challenge: [
+      "A booked chair is the only thing this studio sells, and every booking ran through a conversation. What is offered, what it costs, what is free on Thursday, how to pay: the same handful of questions, answered by hand, in an inbox, while working.",
+      "Manual booking has no way to hold a slot. Two clients could be told the same time, and nothing collected up front meant a no-show cost the studio a whole afternoon it had turned other work away for.",
+      "The pricing is genuinely complex. Braiding and locs run from a short set to a full installation, deposits are a percentage of a service that varies by style, Alberta GST applies, and the balance is settled in person. That is not something a generic booking widget models.",
+      "The studio is private, with the address released on booking, so the site has to carry all of the trust that a walk-past storefront would otherwise carry for free.",
+    ],
+    goal: [
+      "Let a client book and pay without a conversation, at any hour, including the ones where the studio is working.",
+      "Make a slot genuinely held once it is taken, and make a no-show cost the client something rather than the studio.",
+      "Hand the owner the controls. Services, prices, calendar and time off had to be hers to change without a developer.",
+      "Look like the tier of service being sold, because in a craft business the aesthetic is part of the argument.",
+    ],
+    roleDetail: [
+      "Lead developer on the project, delivered through A4 Digital Hub with a small team. I wrote the large majority of the codebase across roughly a hundred commits: the booking flow, the payment integration, the database schema, the admin panel and the scheduled jobs.",
+      "The work came in two phases. The first shipped the studio a working site and booking system in a few weeks, along with a written handover so Bash could run it. The second, months later and with real bookings going through it, went back over the parts that only fail under real usage: concurrency, abuse, access control and time.",
+      "I also wrote the client handover guide the studio still runs from, covering the admin panel, service management and going-live checklist in plain language rather than developer instructions.",
+    ],
+    solution: [
+      "A booking flow that runs start to finish without anyone replying to anything. The client picks a service, sees only the slots that are genuinely free, enters their details and pays a deposit through Stripe Checkout. Payment confirms the booking, and the confirmation and studio alert go out in the same moment.",
+      "Deposits are modelled properly rather than fixed. Each service carries its own deposit percentage, Alberta GST is applied to the deposit, and the balance is recorded as due in person. Services priced too low for Stripe's minimum charge are flagged in the admin panel as unbookable online instead of failing silently at checkout.",
+      "An admin panel with live revenue, client and appointment figures, a filterable bookings table, a month calendar, full service and category management with image upload, and date blocking for holidays and time off. Every status change the owner makes emails the client automatically.",
+      "Scheduled jobs handle the things nobody should have to remember: a reminder to every client twenty four hours before their appointment, and a sweeper that releases slots held by checkouts that were never completed.",
+    ],
+    features: [
+      {
+        title: "Deposit-backed booking",
+        detail:
+          "Stripe Checkout takes a per-service deposit with GST, the balance is settled in the chair, and the slot is only held once payment lands.",
+      },
+      {
+        title: "Real availability",
+        detail:
+          "Slots are generated from studio hours and service duration, so a three hour style is only offered when three hours actually remain.",
+      },
+      {
+        title: "Owner-run admin panel",
+        detail:
+          "Bookings, calendar, services, categories, imagery and blocked dates, all editable without a developer in the loop.",
+      },
+      {
+        title: "Five automated emails",
+        detail:
+          "Confirmation, studio alert, twenty four hour reminder, status change and slot released, all sent without anyone pressing send.",
+      },
+      {
+        title: "Abandoned slots released",
+        detail:
+          "A checkout left unpaid expires, the slot returns to the calendar, and the client is told rather than left waiting.",
+      },
+      {
+        title: "Policies built into the data",
+        detail:
+          "One reschedule at over forty eight hours notice, and blow-dry preference captured at booking, recorded the way the studio actually charges for it.",
+      },
+    ],
+    gallery: [
+      {
+        src: "/work/hairbybash-home.webp",
+        alt: "HairbyBash home page with the Calgary Braider and Loctician headline",
+        caption: "Home page, opening on positioning and a booking call to action",
+        span: "wide",
+      },
+      {
+        src: "/work/hairbybash-services.webp",
+        alt: "HairbyBash services menu showing categories with starting prices",
+        caption: "The services menu, with a starting price on every category",
+        span: "wide",
+      },
+      {
+        src: "/work/hairbybash-about.webp",
+        alt: "HairbyBash about page introducing the founder and the studio",
+        caption: "The founder story, doing the trust work a private studio cannot",
+        span: "wide",
+      },
+    ],
+    technicalBuild: [
+      {
+        title: "Double booking prevented in the database",
+        detail:
+          "Checking availability before inserting narrows the race but cannot close it: it is a read then a write, and two requests milliseconds apart both see the slot free. A Postgres exclusion constraint over the date and a time range moves the rule to the only place that can enforce it under concurrency. The second insert fails, and the route turns that failure into the same \"pick another time\" the flow already handled.",
+      },
+      {
+        title: "Payment confirmed by webhook, not by redirect",
+        detail:
+          "The Stripe webhook decides whether a booking is paid. A client who closes the tab after paying cannot leave the studio with an order in the wrong state, and the confirmation page resolves the booking even when the webhook is slower than the redirect.",
+      },
+      {
+        title: "Rate limiting that survives serverless",
+        detail:
+          "The public checkout endpoint creates a row and a Stripe session on every call, so an unthrottled script could hold the whole calendar. The counter lives in Postgres rather than process memory, because serverless instances come and go and an in-memory limit would reset on every cold start. That is protection that only looks like protection.",
+      },
+      {
+        title: "Scheduled jobs built for unreliable schedulers",
+        detail:
+          "Reminders and the stale-slot sweeper run hourly on GitHub Actions, which treats schedules as best effort and will delay or skip runs. So the reminder job has no lower time bound and picks up whatever an earlier run missed, it claims each booking in the database before sending so overlapping runs cannot double-send, and the sweeper is idempotent by construction.",
+      },
+      {
+        title: "Time anchored to the studio",
+        detail:
+          "Every date and clock read resolves in the studio's own timezone rather than the server's or the visitor's. A booking system that is right in one timezone and wrong in another is a booking system that is wrong.",
+      },
+      {
+        title: "Access by role, not by session",
+        detail:
+          "Reaching the admin area requires an admin role, not merely a signed-in session, with row level security on the tables underneath rather than trust in the application layer alone.",
+      },
+    ],
+    impact: [
+      {
+        label: "Booking without a conversation",
+        detail:
+          "A client picks a service, takes a slot and pays, at any hour, with nobody replying to anything. The studio stopped quoting in DMs and started taking bookings while it works.",
+      },
+      {
+        label: "No-shows cost the client, not the studio",
+        detail:
+          "A deposit is taken before a slot is held, so an afternoon the studio turned other work away for is no longer given away for free.",
+      },
+      {
+        label: "The calendar cannot be double sold",
+        detail:
+          "Slot exclusivity is enforced in the database, so two clients cannot be sold the same hour no matter how closely together they book.",
+      },
+      {
+        label: "The owner runs her own business",
+        detail:
+          "Services, prices, imagery, categories, the calendar and time off are all hers to change, with a written handover guide rather than a dependency on a developer.",
+      },
+    ],
+    lessons: [
+      "A check before a write is not a constraint. If two requests running at the same time can both pass it, the rule belongs in the database, where it can be enforced rather than merely hoped for.",
+      "Serverless has no memory between requests. Anything that has to count, hold or remember across calls needs to live somewhere state actually persists, or it is a safeguard that quietly does nothing.",
+      "Scheduled jobs are best effort. Assume a run will be late, skipped, or overlapping with another, and write handlers that catch up, claim their work and can run twice without harm.",
+      "Shipping in weeks and hardening in months turned out to be the right order. Real bookings surfaced the problems worth fixing, and none of them were the ones I would have guessed at up front.",
+    ],
+  },
+
+  {
     slug: "cutiez-couture",
     name: "Cutiez Couture",
     category: "Fashion E-Commerce",
